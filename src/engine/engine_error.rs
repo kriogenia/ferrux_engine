@@ -8,7 +8,6 @@ pub enum EngineError {
 }
 
 impl EngineError {
-	/// Informative Error message
 	fn message(&self) -> &str {
 		match self {
 			Self::AdapterNotFound => "GPU adapter not found",
@@ -18,11 +17,7 @@ impl EngineError {
 	}
 }
 
-/** Error */
-
 impl Error for EngineError {}
-
-/** Printing */
 
 impl Debug for EngineError {
 	fn fmt(&self, f: &mut Formatter<'_>) -> FmtResult {

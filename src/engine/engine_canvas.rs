@@ -4,10 +4,12 @@ use pixels::{Pixels, SurfaceTexture};
 use winit::dpi::PhysicalSize;
 use winit::window::Window;
 use crate::engine::EngineError;
+use crate::geometry::{Matrix4, MatrixBuilder};
 
 pub struct EngineCanvas {
 	pixels: Pixels,
 	canvas: Vec<Vec<Pixel>>,
+	projection_matrix: Matrix4,
 	width: usize,
 	height: usize
 }
@@ -25,8 +27,19 @@ impl EngineCanvas {
 				.map_err(|_| EngineError::AdapterNotFound)?
 		};
 
+		let projection_matrix = MatrixBuilder::new()
+			.set_screen_position(0.1)
+			.set_view_limit(1000.0)
+			.set_fov(90.0)
+			.set_width(width)
+			.set_height(height)
+			.build();
+
+		dbg!(&projection_matrix);
+
 		Ok(Self {
 			pixels,
+			projection_matrix,
 			canvas: vec![vec![Pixel::Blank; height as usize]; width as usize],
 			width,
 			height
