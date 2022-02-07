@@ -1,3 +1,4 @@
+use bresenham::Bresenham;
 use log::error;
 use pixels::{Pixels, SurfaceTexture};
 use winit::dpi::PhysicalSize;
@@ -50,6 +51,12 @@ impl EngineCanvas {
 		}
 	}
 
+	pub fn draw_line(&mut self, start: Point, end: Point) {
+		for (x,y) in Bresenham::new(start, end) {
+			self.push_pixel(x as usize, y as usize);
+		}
+	}
+
 	pub fn render(&mut self) -> Result<(), EngineError> {
 		for (i, pixel) in self.pixels.get_frame().chunks_exact_mut(4).enumerate() {
 			pixel.copy_from_slice(&[0x00, 0x00, 0x00, 0x00]);
@@ -84,3 +91,5 @@ enum Pixel {
 	Blank,
 	White
 }
+
+type Point = (isize, isize);
