@@ -1,4 +1,5 @@
 use crate::actors::Actor;
+use crate::engine::EngineCanvas;
 
 const BOX_SIZE: i16 = 64;
 
@@ -31,15 +32,11 @@ impl Actor for BouncingBox {
 		self.box_y += self.velocity_y;
 	}
 
-	fn draw(&self, pixel: &mut [u8], coordinates: (i16, i16)) {
-		let x = coordinates.0;
-		let y = coordinates.1;
-
-		if x >= self.box_x
-			&& x < self.box_x + BOX_SIZE
-			&& y >= self.box_y
-			&& y < self.box_y + BOX_SIZE {
-			pixel.copy_from_slice(&[0x5e, 0x48, 0xe8, 0xff]);
+	fn draw(&self, canvas: &mut EngineCanvas) {
+		for x in self.box_x..self.box_x + BOX_SIZE {
+			for y in self.box_y..self.box_y + BOX_SIZE {
+				canvas.push_pixel(x as usize, y as usize);
+			}
 		}
 	}
 }

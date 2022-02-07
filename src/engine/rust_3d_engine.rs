@@ -1,11 +1,10 @@
-use log::error;
-use pixels::{Pixels, SurfaceTexture};
 use winit::dpi::LogicalSize;
 use winit::event::{Event, VirtualKeyCode};
 use winit::event_loop::EventLoop;
 use winit::window::{Window, WindowBuilder};
 use winit_input_helper::WinitInputHelper;
 use crate::engine::engine_error::EngineError;
+use crate::engine::EngineCanvas;
 use crate::environment::Environment;
 
 type Error = EngineError;
@@ -13,7 +12,7 @@ type Error = EngineError;
 pub struct Rust3DEngine {
 	input: WinitInputHelper,
 	window: Window,
-	pixels: Pixels,
+	canvas: EngineCanvas,
 	environment: Environment
 }
 
@@ -30,29 +29,19 @@ impl Rust3DEngine {
 				.unwrap()
 		};
 
-		let pixels = {
-			let window_size = window.inner_size();
-			let surface_texture = SurfaceTexture::new(window_size.width, window_size.height, &window);
-			Pixels::new(window_size.width, window_size.height, surface_texture)
-				.map_err(|_| EngineError::AdapterNotFound)?
-		};
+		let canvas = EngineCanvas::new(&window)?;
 
 		Ok(Self {
 			input: WinitInputHelper::new(),
 			window,
-			pixels,
+			canvas,
 			environment: Environment::new(width as usize)
 		})
 	}
 
 	pub fn draw(&mut self) -> Result<(), EngineError> {
-		self.environment.draw(self.pixels.get_frame());
-		self.pixels
-			.render()
-			.map_err(|e| {
-				error!("pixels.render() failed: {:?}", e);
-				EngineError::Rendering
-			})
+		self.environment.draw(&mut self.canvas);
+		self.canvas.render()
 	}
 
 	pub fn update(&mut self, event: &Event<()>) -> Result<(), EngineError> {
@@ -65,7 +54,7 @@ impl Rust3DEngine {
 
 				// Resize the window
 				if let Some(size) = self.input.window_resized() {
-					self.pixels.resize_surface(size.width, size.height);
+					self.canvas.resize(size);
 				}
 
 				// Update internal state and request a redraw
