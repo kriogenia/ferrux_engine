@@ -37,7 +37,7 @@ impl EngineCanvas {
 	}
 
 	pub fn push_pixel(&mut self, x: usize, y: usize) {
-		if x < self.width && x >= 0 && y < self.height && y >= 0 {
+		if x < self.width &&  y < self.height {
 			self.canvas[x][y] = Pixel::White;
 		}
 	}

@@ -1,2 +1,4 @@
-pub use crate::actors::environment::Environment;
+pub use environment::Environment;
+
+pub mod environment;
 

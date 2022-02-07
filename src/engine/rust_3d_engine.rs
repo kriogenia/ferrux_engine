@@ -35,7 +35,7 @@ impl Rust3DEngine {
 			input: WinitInputHelper::new(),
 			window,
 			canvas,
-			environment: Environment::new(width as usize)
+			environment: Environment::new()
 		})
 	}
 
