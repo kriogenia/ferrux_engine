@@ -45,7 +45,7 @@ impl EngineCanvas {
 		self.canvas = vec![vec![Pixel::Blank; self.height]; self.width]
 	}
 
-	pub fn push_pixel(&mut self, x: usize, y: usize) {
+	fn push_pixel(&mut self, x: usize, y: usize) {
 		if x < self.width &&  y < self.height {
 			self.canvas[x][y] = Pixel::White;
 		}
