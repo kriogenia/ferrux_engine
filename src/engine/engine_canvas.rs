@@ -32,6 +32,14 @@ impl EngineCanvas {
 		})
 	}
 
+	pub fn width(&self) -> usize {
+		self.width
+	}
+
+	pub fn height(&self) -> usize {
+		self.height
+	}
+
 	fn clear(&mut self) {
 		self.canvas = vec![vec![Pixel::Blank; self.height]; self.width]
 	}
