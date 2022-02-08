@@ -1,5 +1,5 @@
 use bresenham::Bresenham;
-use log::error;
+use log::{error, info};
 use pixels::{Pixels, SurfaceTexture};
 use winit::dpi::PhysicalSize;
 use winit::window::Window;
@@ -17,10 +17,13 @@ pub struct EngineCanvas {
 impl EngineCanvas {
 
 	pub fn new(window: &Window) -> Result<Self, EngineError> {
+		info!("Starting engine canvas");
 		let window_size = window.inner_size();
 		let width = window_size.width as usize;
 		let height = window_size.height as usize;
+		info!("Width: {}. Height: {}", &width, &height);
 
+		info!("Starting pixel buffer");
 		let pixels = {
 			let surface_texture = SurfaceTexture::new(window_size.width, window_size.height, &window);
 			Pixels::new(window_size.width, window_size.height, surface_texture)
@@ -34,8 +37,6 @@ impl EngineCanvas {
 			.set_width(width)
 			.set_height(height)
 			.build();
-
-		dbg!(&projection_matrix);
 
 		Ok(Self {
 			pixels,

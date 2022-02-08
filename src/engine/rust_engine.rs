@@ -1,3 +1,4 @@
+use log::info;
 use winit::dpi::LogicalSize;
 use winit::event::{Event, VirtualKeyCode};
 use winit::event_loop::EventLoop;
@@ -19,6 +20,7 @@ pub struct Rust3DEngine {
 impl Rust3DEngine {
 
 	pub fn new(title: String, width: f64, height: f64, event_loop: &EventLoop<()>) -> Result<Self, Error> {
+		info!("Building window");
 		let window = {
 			let size = LogicalSize::new(width, height);
 			WindowBuilder::new()
@@ -49,6 +51,7 @@ impl Rust3DEngine {
 			if self.input.update(event) {
 				// Close events
 				if self.input.key_pressed(VirtualKeyCode::Escape) || self.input.quit() {
+					info!("Quitting engine");
 					return Err(EngineError::CloseInvocation);
 				}
 

@@ -1,4 +1,5 @@
 use std::ops::Index;
+use log::info;
 
 const SIZE: usize = 4;
 
@@ -73,12 +74,14 @@ impl MatrixBuilder {
 
 	pub fn build(self) -> Matrix4 {
 		// TODO check valid creation and return error
+		info!("Building new projection matrix");
 		let mut matrix = Matrix4::default();
 		let aspect_ratio = self.width as f32 / self.height as f32;
-		println!("{}", aspect_ratio);
+		info!("Aspect ratio: {}", aspect_ratio);
 		let fov_rad: f32 = 1.0 / (self.fov * 0.5 / 180.0 * 3.14159).tan();
-		println!("{}", fov_rad);
+		info!("Calculated fov rad: {}", fov_rad);
 		let distance = self.view_limit - self.screen_position;
+		info!("Calculated distance: {}", distance);
 
 		matrix.matrix[0][0] = aspect_ratio * fov_rad;
 		matrix.matrix[1][1] = fov_rad;

@@ -1,4 +1,4 @@
-use log::error;
+use log::{error, info};
 use winit::event::Event;
 use winit::event_loop::{ControlFlow, EventLoop};
 use crate::engine::Rust3DEngine;
@@ -20,6 +20,7 @@ impl EngineLoop {
 	}
 
 	pub fn run(self, mut engine: Rust3DEngine) {
+		info!("Starting event loop");
 		self.event_loop.run(move |event, _, control_flow| {
 			if let Event::RedrawRequested(_) = event {
 				if engine.draw().is_err() {

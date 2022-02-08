@@ -1,3 +1,4 @@
+use log::info;
 use crate::actors::Actor;
 use crate::actors::examples::Triangle2D;
 use crate::engine::EngineCanvas;
@@ -9,6 +10,7 @@ pub struct Environment {
 impl Environment {
 
 	pub fn new() -> Self {
+		info!("Creating environment");
 		let tri1 = Triangle2D::new();
 
 		Environment {
