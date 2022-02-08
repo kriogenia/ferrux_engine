@@ -1,3 +1,5 @@
+use std::ops::Index;
+
 const SIZE: usize = 4;
 
 #[derive(Debug)]
@@ -11,6 +13,15 @@ impl Default for Matrix4 {
 			matrix: [[0.0; SIZE]; SIZE]
 		}
 	}
+}
+
+impl Index<usize> for Matrix4 {
+	type Output = [f32];
+
+	fn index(&self, index: usize) -> &Self::Output {
+		&self.matrix[index]
+	}
+
 }
 
 /**********************************************************************/
@@ -27,7 +38,7 @@ impl MatrixBuilder {
 
 	pub fn new() -> Self {
 		Self {
-			screen_position: 0.0,
+			screen_position: 0.0,           // TODO change with defaults
 			view_limit: 0.0,
 			fov: 0.0,
 			width: 0,

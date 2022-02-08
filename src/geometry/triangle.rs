@@ -1,3 +1,5 @@
+use crate::geometry::point3::Point3;
+
 pub struct Triangle {
 	points: [Point3; 3]
 }
@@ -17,9 +19,3 @@ impl Triangle {
 }
 
 type Point = (f32, f32, f32);
-
-struct Point3 {
-	x: f32,
-	y: f32,
-	z: f32
-}
