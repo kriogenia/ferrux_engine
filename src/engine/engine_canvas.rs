@@ -6,6 +6,7 @@ use winit::window::Window;
 use crate::engine::EngineError;
 use crate::geometry::{Matrix4, MatrixBuilder};
 
+/// Canvas to manage what is drawn in the screen
 pub struct EngineCanvas {
 	pixels: Pixels,
 	canvas: Vec<Vec<Pixel>>,
@@ -16,6 +17,14 @@ pub struct EngineCanvas {
 
 impl EngineCanvas {
 
+	/// Returns a new canvas
+	///
+	/// # Arguments
+	/// * `window` - Borrowed winit [Window] to draw on
+	///
+	/// # Errors
+	/// If no adapter for the GPU is found a [EngineError::AdapterNotFound] is thrown
+	///
 	pub fn new(window: &Window) -> Result<Self, EngineError> {
 		info!("Starting engine canvas");
 		let window_size = window.inner_size();
@@ -47,10 +56,12 @@ impl EngineCanvas {
 		})
 	}
 
+	/// Width of the screen
 	pub fn width(&self) -> usize {
 		self.width
 	}
 
+	/// Height of the screen
 	pub fn height(&self) -> usize {
 		self.height
 	}
@@ -65,12 +76,23 @@ impl EngineCanvas {
 		}
 	}
 
+	/// Draws a line between the two specified points in the canvas
+	///
+	/// # Arguments
+	/// * `start` - Starting point
+	/// * `end` - Ending point
+	///
 	pub fn draw_line(&mut self, start: Point, end: Point) {
 		for (x,y) in Bresenham::new(start, end) {
 			self.push_pixel(x as usize, y as usize);
 		}
 	}
 
+	/// Renders the current canvas in the screen and clears it
+	///
+	/// # Errors
+	/// [EngineError::Rendering] if something goes wrong
+	///
 	pub fn render(&mut self) -> Result<(), EngineError> {
 		for (i, pixel) in self.pixels.get_frame().chunks_exact_mut(4).enumerate() {
 			pixel.copy_from_slice(&[0x00, 0x00, 0x00, 0x00]);
@@ -91,6 +113,11 @@ impl EngineCanvas {
 			})
 	}
 
+	/// Resizes the canvas
+	///
+	/// # Arguments
+	/// * `size` - New size
+	///
 	pub fn resize(&mut self, size: PhysicalSize<u32>) {
 		self.width = size.width as usize;
 		self.height = size.height as usize;

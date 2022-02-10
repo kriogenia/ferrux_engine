@@ -3,22 +3,39 @@ use winit::event::Event;
 use winit::event_loop::{ControlFlow, EventLoop};
 use crate::engine::Rust3DEngine;
 
+/// Loop to run and manage the updating and drawing process of the [Rust3DEngine]
 pub struct EngineLoop {
 	event_loop: EventLoop<()>,
 }
 
 impl EngineLoop {
 
+	/// Creates and returns a new [EngineLoop]
 	pub fn new() -> Self {
 		EngineLoop {
 			event_loop: EventLoop::new()
 		}
 	}
 
+	/// Returns the internal [EventLoop]
 	pub fn event_loop(&self) -> &EventLoop<()> {
 		&self.event_loop
 	}
 
+	/// Starts a new thread to run the provided [Rust3DEngine]
+	///
+	/// # Arguments
+	/// * `engine` - engine to execute
+	///
+	/// # Example
+	/// Create a [Rust3DEngine] with a [EngineLoop] and start its execution
+	/// ```
+	/// let engine_loop = EngineLoop::new();
+	///	let mut engine = Rust3DEngine::new("Rust 3D Engine".to_string(), 480, 960,
+	///                                   engine_loop.event_loop())?;
+	/// engine_loop.run(engine);
+	/// ```
+	///
 	pub fn run(self, mut engine: Rust3DEngine) {
 		info!("Starting event loop");
 		self.event_loop.run(move |event, _, control_flow| {

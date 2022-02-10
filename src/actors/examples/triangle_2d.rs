@@ -1,6 +1,8 @@
 use crate::actors::Actor;
+use crate::actors::actor::Drawable;
 use crate::engine::EngineCanvas;
 
+/// Actor example with a two-dimensional Triangle
 pub struct Triangle2D {
 	point_a: (f32, f32),
 	point_b: (f32, f32),
@@ -19,10 +21,7 @@ impl Triangle2D {
 
 }
 
-impl Actor for Triangle2D {
-	fn update(&mut self) {
-		//todo!()
-	}
+impl Drawable for Triangle2D {
 
 	fn draw(&self, canvas: &mut EngineCanvas) {
 		let half_width = canvas.width() as f32 / 2.0;
@@ -37,5 +36,11 @@ impl Actor for Triangle2D {
 		canvas.draw_line(points[1], points[2]);
 		canvas.draw_line(points[0], points[2]);
 
+	}
+}
+
+impl Actor for Triangle2D {
+	fn update(&mut self) {
+		//todo!()
 	}
 }

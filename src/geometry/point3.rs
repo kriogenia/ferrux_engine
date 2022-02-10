@@ -1,5 +1,6 @@
 use crate::geometry::{Matrix4, MatrixBuilder};
 
+/// Three-dimensional vector
 #[derive(Debug)]
 pub struct Point3 {
 	pub x: f32,
@@ -9,6 +10,11 @@ pub struct Point3 {
 
 impl Point3 {
 
+	/// Multiplies the vector with the given matrix
+	///
+	/// # Arguments
+	/// * `matrix` - Matrix to multiply
+	///
 	fn multiply_matrix(&self, matrix: &Matrix4) -> Option<Point3> {
 		let x = self.x * matrix[0][0] + self.y * matrix[1][0] + self.z * matrix[2][0] + matrix[3][0];
 		let y = self.x * matrix[0][1] + self.y * matrix[1][1] + self.z * matrix[2][1] + matrix[3][1];

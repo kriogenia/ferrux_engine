@@ -1,9 +1,13 @@
 use std::error::Error;
 use std::fmt::{Debug, Display, Formatter, Result as FmtResult};
 
+/// Errors than can occur with the [Rust3DEngine]
 pub enum EngineError {
+	/// No GPU adapter has been found to run the pixel buffer
 	AdapterNotFound,
+	/// Closing of the engine invoked
 	CloseInvocation,
+	/// Error triggered during a render
 	Rendering
 }
 

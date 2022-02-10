@@ -3,6 +3,7 @@ use log::info;
 
 const SIZE: usize = 4;
 
+/// Dimension four matrix to use with the vector's display calculation
 #[derive(Debug)]
 pub struct Matrix4 {
 	matrix: [[f32; SIZE]; SIZE]
@@ -27,6 +28,7 @@ impl Index<usize> for Matrix4 {
 
 /**********************************************************************/
 
+/// Builder to construct projection matrices
 pub struct MatrixBuilder {
 	screen_position: f32,
 	view_limit: f32,
@@ -37,6 +39,7 @@ pub struct MatrixBuilder {
 
 impl MatrixBuilder {
 
+	/// Returns an instance of a builder
 	pub fn new() -> Self {
 		Self {
 			screen_position: 0.0,           // TODO change with defaults
@@ -47,31 +50,37 @@ impl MatrixBuilder {
 		}
 	}
 
+	/// Sets the spatial screen position in the z axis
 	pub fn set_screen_position(mut self, position: f32) -> Self {
 		self.screen_position = position;
 		self
 	}
 
+	/// Sets the view limit of the rendering in the z axis
 	pub fn set_view_limit(mut self, limit: f32) -> Self {
 		self.view_limit = limit;
 		self
 	}
 
+	/// Sets the field of view in grades
 	pub fn set_fov(mut self, fov: f32) -> Self {
 		self.fov = fov;
 		self
 	}
 
+	/// Sets the width of the screen
 	pub fn set_width(mut self, width: usize) -> Self {
 		self.width = width;
 		self
 	}
 
+	/// Sets the height of the screen
 	pub fn set_height(mut self, height: usize) -> Self {
 		self.height = height;
 		self
 	}
 
+	/// Builds the projection matrix derived from the entered parameters and consumes the builder
 	pub fn build(self) -> Matrix4 {
 		// TODO check valid creation and return error
 		info!("Building new projection matrix");

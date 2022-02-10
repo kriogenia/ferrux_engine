@@ -1,11 +1,17 @@
 use crate::geometry::point3::Point3;
 
+/// Three-dimensional triangle composed with three [Point3]
 pub struct Triangle {
 	points: [Point3; 3]
 }
 
 impl Triangle {
 
+	/// Builds a new triangle with the given points
+	///
+	/// # Arguments
+	/// * `point_a`, `point_b`, `point_c` - Points of the triangle
+	///
 	pub fn new(point_a: Point, point_b: Point, point_c: Point) -> Self {
 		Self {
 			points: [
