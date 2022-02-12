@@ -4,7 +4,7 @@ use crate::geometry::{Matrix4, MatrixBuilder};
 use crate::geometry::vector::point_parsing_error::PointParsingError;
 
 /// Three-dimensional vector
-#[derive(Debug)]
+#[derive(Debug, PartialEq)]
 pub struct Point3 {
 	pub x: f32,
 	pub y: f32,
@@ -81,9 +81,7 @@ fn vector_matrix_multiplication() {
 #[test]
 fn valid_parsing() {
 	let point = Point3::try_from("1.0 0 -3.5".to_string()).unwrap();
-	assert_eq!(point.x, 1.0);
-	assert_eq!(point.y, 0.0);
-	assert_eq!(point.z, -3.5);
+	assert_eq!(point, Point3{ x: 1.0, y: 0.0, z: -3.5 });
 }
 
 #[test]
