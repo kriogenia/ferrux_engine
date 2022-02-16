@@ -6,13 +6,16 @@ use winit::window::Window;
 use crate::engine::EngineError;
 use crate::geometry::{Matrix4, MatrixBuilder};
 
+const DEFAULT_OFFSET: f32 = 3.0;
+
 /// Canvas to manage what is drawn in the screen
 pub struct EngineCanvas {
 	pixels: Pixels,
 	canvas: Vec<Vec<Pixel>>,
 	projection_matrix: Matrix4,
 	width: usize,
-	height: usize
+	height: usize,
+	z_offset: f32
 }
 
 impl EngineCanvas {
@@ -52,7 +55,8 @@ impl EngineCanvas {
 			projection_matrix,
 			canvas: vec![vec![Pixel::Blank; height as usize]; width as usize],
 			width,
-			height
+			height,
+			z_offset: DEFAULT_OFFSET
 		})
 	}
 
@@ -64,6 +68,11 @@ impl EngineCanvas {
 	/// Height of the screen
 	pub fn height(&self) -> usize {
 		self.height
+	}
+
+	/// Offset in the Z-axis
+	pub fn offset(&self) -> f32 {
+		self.z_offset
 	}
 
 	fn clear(&mut self) {
@@ -123,6 +132,10 @@ impl EngineCanvas {
 		self.height = size.height as usize;
 		self.clear();
 		self.pixels.resize_surface(size.width, size.height);
+	}
+
+	pub fn projection_matrix(&self) -> &Matrix4 {
+		&self.projection_matrix
 	}
 
 }

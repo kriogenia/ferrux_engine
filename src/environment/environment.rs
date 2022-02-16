@@ -1,6 +1,6 @@
 use log::info;
 use crate::actors::Actor;
-use crate::actors::examples::{get_3d_cube, Triangle2D};
+use crate::actors::examples::get_3d_cube;
 use crate::engine::EngineCanvas;
 
 /// Represents the environment that is drawn in the screen. It holds all the actors to draw.
@@ -13,11 +13,11 @@ impl Environment {
 	/// Returns a new instance of the environment
 	pub fn new() -> Self {
 		info!("Creating environment");
-		let tri1 = Triangle2D::new();
+		//let tri1 = Triangle2D::new();
 		let cube1 = get_3d_cube();
 
 		Environment {
-			actors: vec![Box::new(tri1), Box::new(cube1)]
+			actors: vec![/*Box::new(tri1), */Box::new(cube1)]
 		}
 	}
 

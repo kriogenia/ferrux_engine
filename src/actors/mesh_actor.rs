@@ -1,5 +1,6 @@
 use crate::actors::Actor;
 use crate::actors::actor::Drawable;
+use crate::geometry::Projectable;
 use crate::engine::EngineCanvas;
 use crate::geometry::Mesh;
 
@@ -24,7 +25,20 @@ impl MeshActor {
 
 impl Drawable for MeshActor {
 	fn draw(&self, canvas: &mut EngineCanvas) {
-		// todo calculate and draw
+		let offset = canvas.offset();
+		let width = canvas.width() as f32;
+		let height = canvas.height() as f32;
+
+		for triangle in &self.mesh.triangles {
+			let projection = triangle.get_projection(canvas.projection_matrix(), offset, width, height);
+
+			canvas.draw_line((projection.0.x as isize, projection.0.y as isize),
+			                 (projection.1.x as isize, projection.1.y as isize));
+			canvas.draw_line((projection.1.x as isize, projection.1.y as isize),
+			                 (projection.2.x as isize, projection.2.y as isize));
+			canvas.draw_line((projection.2.x as isize, projection.2.y as isize),
+			                 (projection.0.x as isize, projection.0.y as isize));
+		}
 	}
 }
 
