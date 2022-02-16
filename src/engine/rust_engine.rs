@@ -1,4 +1,5 @@
-use log::info;
+use std::time::SystemTime;
+use log::{error, info};
 use winit::dpi::LogicalSize;
 use winit::event::{Event, VirtualKeyCode};
 use winit::event_loop::EventLoop;
@@ -16,7 +17,8 @@ pub struct Rust3DEngine {
 	input: WinitInputHelper,
 	window: Window,
 	canvas: EngineCanvas,
-	environment: Environment
+	environment: Environment,
+	time: SystemTime
 }
 
 impl Rust3DEngine {
@@ -59,7 +61,8 @@ impl Rust3DEngine {
 			input: WinitInputHelper::new(),
 			window,
 			canvas,
-			environment: Environment::new()
+			environment: Environment::new(),
+			time: SystemTime::now()
 		})
 	}
 
@@ -83,23 +86,35 @@ impl Rust3DEngine {
 	/// will be returned.
 	///
 	pub fn update(&mut self, event: &Event<()>) -> Result<(), EngineError> {
-			// Handle input events
-			if self.input.update(event) {
-				// Close events
-				if self.input.key_pressed(VirtualKeyCode::Escape) || self.input.quit() {
-					info!("Quitting engine");
-					return Err(EngineError::CloseInvocation);
-				}
+		// Handle input events
+		if self.input.update(event) {
+			// Close events
+			if self.input.key_pressed(VirtualKeyCode::Escape) || self.input.quit() {
+				info!("Quitting engine");
+				return Err(EngineError::CloseInvocation);
+			}
 
-				// Resize the window
-				if let Some(size) = self.input.window_resized() {
-					self.canvas.resize(size);
-				}
+			// Resize the window
+			if let Some(size) = self.input.window_resized() {
+				self.canvas.resize(size);
+			}
+		}
 
-				// Update internal state and request a redraw
-				self.environment.update();
+		// Update internal state and request a redraw
+		self.environment.update();
+
+		match self.time.elapsed() {
+			Ok(difference) => {
+				if difference.as_millis() > 0 {
+					info!("{} FPS", 1000/difference.as_millis());
+				}
+				self.time = SystemTime::now();
 				self.window.request_redraw();
 			}
+			Err(_) => {
+				error!("Error calculating delta time");
+			}
+		}
 		Ok(())
 	}
 

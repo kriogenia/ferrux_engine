@@ -1,5 +1,5 @@
 use log::{error, info};
-use winit::event::Event;
+use winit::event::{Event, WindowEvent};
 use winit::event_loop::{ControlFlow, EventLoop};
 use crate::engine::Rust3DEngine;
 
@@ -39,15 +39,26 @@ impl EngineLoop {
 	pub fn run(self, mut engine: Rust3DEngine) {
 		info!("Starting event loop");
 		self.event_loop.run(move |event, _, control_flow| {
-			if let Event::RedrawRequested(_) = event {
-				if engine.draw().is_err() {
+			*control_flow = ControlFlow::Poll;
+
+			match event {
+				Event::WindowEvent { event: WindowEvent::CloseRequested, .. } => {
+					info!("The close button was pressed; stopping");
 					*control_flow = ControlFlow::Exit
-				}
+				},
+				Event::MainEventsCleared => {
+					engine.update(&event).unwrap_or_else(|e| {
+						error!("Error during update: {}", e);
+						*control_flow = ControlFlow::Exit;
+					});
+				},
+				Event::RedrawRequested(_) => {
+					if engine.draw().is_err() {
+						*control_flow = ControlFlow::Exit
+					}
+				},
+				_ => ()
 			}
-			engine.update(&event).unwrap_or_else(|e| {
-				error!("Error during update: {}", e);
-				*control_flow = ControlFlow::Exit;
-			});
 		});
 	}
 }
