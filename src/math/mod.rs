@@ -1,0 +1,3 @@
+pub use vector_matrix_multiplication::vector_dot_matrix;
+
+mod vector_matrix_multiplication;

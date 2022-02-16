@@ -1,9 +1,14 @@
-use std::num::ParseFloatError;
-use pixels::Error;
-use crate::geometry::{Matrix4, MatrixBuilder};
+use crate::geometry::Matrix4;
+use crate::geometry::projectable::Projectable;
+use crate::geometry::vector::Point2;
 use crate::geometry::vector::point_parsing_error::PointParsingError;
+use crate::math::vector_dot_matrix;
 
 /// Three-dimensional vector
+///
+/// # Properties
+/// * `x`, `y`, `z` - Axes of the vector
+///
 #[derive(Debug, PartialEq)]
 pub struct Point3 {
 	pub x: f32,
@@ -11,35 +16,18 @@ pub struct Point3 {
 	pub z: f32
 }
 
-impl Point3 {
-
-	/// Multiplies the vector with the given matrix
-	///
-	/// # Arguments
-	/// * `matrix` - Matrix to multiply
-	///
-	fn multiply_matrix(&self, matrix: &Matrix4) -> Option<Point3> {
-		let x = self.x * matrix[0][0] + self.y * matrix[1][0] + self.z * matrix[2][0] + matrix[3][0];
-		let y = self.x * matrix[0][1] + self.y * matrix[1][1] + self.z * matrix[2][1] + matrix[3][1];
-		let z = self.x * matrix[0][2] + self.y * matrix[1][2] + self.z * matrix[2][2] + matrix[3][2];
-		let w = self.x * matrix[0][3] + self.y * matrix[1][3] + self.z * matrix[2][3] + matrix[3][3];
-
-		if w != 0.0 {
-			Some(Point3 {
-				x: x/w,
-				y: y/w,
-				z: z/w,
-			})
-		} else { None }
+impl Projectable<Point2> for Point3 {
+	fn get_projection(&self, matrix: &Matrix4, offset: f32, width: f32, height: f32) -> Point2 {
+		let (x, y, _) = vector_dot_matrix((self.x, self.y, self.z + offset), matrix);
+		Point2 { x, y }.project(width, height)
 	}
-
 }
 
 impl TryFrom<String> for Point3 {
 	type Error = PointParsingError;
 
 	fn try_from(value: String) -> Result<Self, Self::Error> {
-		let mut parsed: Vec<&str> = value.split(" ").collect();
+		let parsed: Vec<&str> = value.split(" ").collect();
 
 		if parsed.len() != 3 {
 			return Err(PointParsingError::InvalidAxisNumber);
@@ -53,43 +41,55 @@ impl TryFrom<String> for Point3 {
 	}
 }
 
-#[test]
-fn empty_matrix_multiplication() {
-	let point = Point3 { x: 1.0, y: 1.0, z: 1.0 };
-	let matrix = Matrix4::default();
-	assert!(point.multiply_matrix(&matrix).is_none());
+impl Clone for Point3 {
+	fn clone(&self) -> Self {
+		Self {
+			x: self.x,
+			y: self.y,
+			z: self.z
+		}
+	}
 }
 
-#[test]
-fn vector_matrix_multiplication() {
-	let point = Point3 { x: 1.0, y: 1.0, z: 1.0 };
-	let matrix = MatrixBuilder::new()
-		.set_height(1)
-		.set_width(1)
-		.set_fov(90.0)
-		.set_view_limit(2.0)
-		.set_screen_position(1.0)
-		.build();
+#[cfg(test)]
+mod test {
+	use crate::geometry::{Matrix4, MatrixBuilder, Point3};
+	use crate::geometry::projectable::Projectable;
+	use crate::geometry::vector::Point2;
+	use crate::geometry::vector::point_parsing_error::PointParsingError;
 
-	let result = point.multiply_matrix(&matrix).unwrap();
-	let expected = Point3 { x: 1.0, y: 1.0, z: 0.0 };
-	assert!((result.x - expected.x).abs() < 0.0001);
-	assert!((result.y - expected.y).abs() < 0.0001);
-	assert!((result.z - expected.z).abs() < 0.0001);
+	#[test]
+	fn valid_parsing() {
+		let point = Point3::try_from("1.0 0 -3.5".to_string()).unwrap();
+		assert_eq!(point, Point3{ x: 1.0, y: 0.0, z: -3.5 });
+	}
+
+	#[test]
+	fn invalid_parsing() {
+		assert_eq!(Point3::try_from("0 0".to_string()).unwrap_err(),
+		           PointParsingError::InvalidAxisNumber);
+		assert_eq!(Point3::try_from("0 0 0 0".to_string()).unwrap_err(),
+		           PointParsingError::InvalidAxisNumber);
+		assert_eq!(Point3::try_from("0 0 a".to_string()).unwrap_err(),
+		           PointParsingError::InvalidFloat);
+	}
+
+	#[test]
+	fn get_projection() {
+		let point = Point3 { x: 1.0, y: 1.0, z: 0.0 };
+		let matrix = MatrixBuilder::new()
+			.set_height(1)
+			.set_width(1)
+			.set_fov(90.0)
+			.set_view_limit(2.0)
+			.set_screen_position(1.0)
+			.build();
+
+		let result = point.get_projection(&matrix, 1.0, 240.0, 480.0);
+
+		let expected = Point2 { x: 240.0, y: 480.0 };
+		assert!((result.x - expected.x).abs() < 0.001);
+		assert!((result.y - expected.y).abs() < 0.001);
+	}
 }
 
-#[test]
-fn valid_parsing() {
-	let point = Point3::try_from("1.0 0 -3.5".to_string()).unwrap();
-	assert_eq!(point, Point3{ x: 1.0, y: 0.0, z: -3.5 });
-}
-
-#[test]
-fn invalid_parsing() {
-	assert_eq!(Point3::try_from("0 0".to_string()).unwrap_err(),
-	           PointParsingError::InvalidAxisNumber);
-	assert_eq!(Point3::try_from("0 0 0 0".to_string()).unwrap_err(),
-	           PointParsingError::InvalidAxisNumber);
-	assert_eq!(Point3::try_from("0 0 a".to_string()).unwrap_err(),
-	           PointParsingError::InvalidFloat);
-}
