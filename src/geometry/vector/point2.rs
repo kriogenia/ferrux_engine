@@ -21,7 +21,6 @@ impl Point2 {
 
 #[cfg(test)]
 mod tests {
-	use crate::geometry::Point3;
 	use crate::geometry::vector::point2::Point2;
 
 	#[test]

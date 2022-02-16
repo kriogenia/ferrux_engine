@@ -21,7 +21,7 @@ type Vector = (f32, f32, f32);
 
 #[cfg(test)]
 mod tests {
-	use crate::geometry::{Matrix4, MatrixBuilder, Point3};
+	use crate::geometry::{Matrix4, MatrixBuilder};
 	use crate::math::vector_dot_matrix;
 
 	#[test]

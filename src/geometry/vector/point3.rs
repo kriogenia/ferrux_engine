@@ -41,19 +41,9 @@ impl TryFrom<String> for Point3 {
 	}
 }
 
-impl Clone for Point3 {
-	fn clone(&self) -> Self {
-		Self {
-			x: self.x,
-			y: self.y,
-			z: self.z
-		}
-	}
-}
-
 #[cfg(test)]
 mod test {
-	use crate::geometry::{Matrix4, MatrixBuilder, Point3};
+	use crate::geometry::{MatrixBuilder, Point3};
 	use crate::geometry::projectable::Projectable;
 	use crate::geometry::vector::Point2;
 	use crate::geometry::vector::point_parsing_error::PointParsingError;
@@ -91,5 +81,6 @@ mod test {
 		assert!((result.x - expected.x).abs() < 0.001);
 		assert!((result.y - expected.y).abs() < 0.001);
 	}
+
 }
 

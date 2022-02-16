@@ -12,7 +12,7 @@ pub enum GeometryError {
 impl GeometryError {
 	fn message(&self) -> String {
 		match self {
-			Self::InvalidMesh => "GPU adapter not found".to_string(),
+			Self::InvalidMesh => "Invalid mesh. At least one triangle is required.".to_string(),
 			Self::InvalidPoint(error) => format!("Invalid triangle: {}", error),
 			Self::InvalidTriangle(error) => format!("Invalid triangle: {}", error)
 		}
