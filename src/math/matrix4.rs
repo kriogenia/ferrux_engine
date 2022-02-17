@@ -1,5 +1,4 @@
 use std::ops::Index;
-use log::info;
 
 const SIZE: usize = 4;
 

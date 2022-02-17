@@ -3,8 +3,7 @@ use crate::actors::actor::Drawable;
 use crate::geometry::Projectable;
 use crate::engine::EngineCanvas;
 use crate::geometry::Mesh;
-use crate::math::builders::{ProjectionMatrixBuilder, RotationMatrixBuilder};
-use crate::math::vector_dot_matrix;
+use crate::math::builders::{RotationAxis, RotationMatrixBuilder};
 
 /// Implementation of an actor with a mesh
 pub struct MeshActor {
@@ -47,11 +46,20 @@ impl Drawable for MeshActor {
 
 impl Actor for MeshActor {
 	fn update(&mut self, delta: u128) {
-		let matrix = RotationMatrixBuilder::new().with_theta(delta as f32 * 0.1).build();
+		let matrix_x = RotationMatrixBuilder::new()
+			.in_axis(RotationAxis::X)
+			.with_speed(0.01)
+			.with_theta(delta as f32 * 0.1)
+			.build();
+		let matrix_z = RotationMatrixBuilder::new()
+			.in_axis(RotationAxis::Z)
+			.with_speed(-0.02)
+			.with_theta(delta as f32 * 0.1)
+			.build();
 
 		for triangle in &mut self.mesh.triangles {
-			triangle.rotate(&matrix);
-			println!("{:?}", triangle);
+			triangle.rotate(&matrix_x);
+			triangle.rotate(&matrix_z)
 		}
 
 	}
