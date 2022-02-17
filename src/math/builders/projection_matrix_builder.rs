@@ -1,35 +1,8 @@
-use std::ops::Index;
 use log::info;
-
-const SIZE: usize = 4;
-
-/// Dimension four matrix to use with the vector's display calculation
-#[derive(Debug)]
-pub struct Matrix4 {
-	matrix: [[f32; SIZE]; SIZE]
-}
-
-impl Default for Matrix4 {
-	fn default() -> Self {
-		Self {
-			matrix: [[0.0; SIZE]; SIZE]
-		}
-	}
-}
-
-impl Index<usize> for Matrix4 {
-	type Output = [f32];
-
-	fn index(&self, index: usize) -> &Self::Output {
-		&self.matrix[index]
-	}
-
-}
-
-/**********************************************************************/
+use crate::math::Matrix4;
 
 /// Builder to construct projection matrices
-pub struct MatrixBuilder {
+pub struct ProjectionMatrixBuilder {
 	screen_position: f32,
 	view_limit: f32,
 	fov: f32,
@@ -37,7 +10,7 @@ pub struct MatrixBuilder {
 	height: usize
 }
 
-impl MatrixBuilder {
+impl ProjectionMatrixBuilder {
 
 	/// Returns an instance of a builder
 	pub fn new() -> Self {
@@ -102,5 +75,3 @@ impl MatrixBuilder {
 	}
 
 }
-
-// TODO test matrix building

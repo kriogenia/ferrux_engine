@@ -4,7 +4,8 @@ use pixels::{Pixels, SurfaceTexture};
 use winit::dpi::PhysicalSize;
 use winit::window::Window;
 use crate::engine::EngineError;
-use crate::geometry::{Matrix4, MatrixBuilder};
+use crate::math::Matrix4;
+use crate::math::builders::ProjectionMatrixBuilder;
 
 const DEFAULT_OFFSET: f32 = 3.0;
 
@@ -42,7 +43,7 @@ impl EngineCanvas {
 				.map_err(|_| EngineError::AdapterNotFound)?
 		};
 
-		let projection_matrix = MatrixBuilder::new()
+		let projection_matrix = ProjectionMatrixBuilder::new()
 			.set_screen_position(0.1)
 			.set_view_limit(1000.0)
 			.set_fov(90.0)

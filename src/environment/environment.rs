@@ -22,9 +22,9 @@ impl Environment {
 	}
 
 	/// Procs an update of all the actors
-	pub fn update(&mut self) {
+	pub fn update(&mut self, delta: u128) {
 		for actor in &mut self.actors {
-			actor.update();
+			actor.update(delta);
 		}
 	}
 

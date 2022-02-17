@@ -100,14 +100,14 @@ impl Rust3DEngine {
 			}
 		}
 
-		// Update internal state and request a redraw
-		self.environment.update();
 
 		match self.time.elapsed() {
 			Ok(difference) => {
 				if difference.as_millis() > 0 {
 					info!("{} FPS", 1000/difference.as_millis());
 				}
+				// Update internal state and request a redraw
+				self.environment.update(difference.as_millis());
 				self.time = SystemTime::now();
 				self.window.request_redraw();
 			}

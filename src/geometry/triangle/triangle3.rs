@@ -1,7 +1,7 @@
-use crate::geometry::{Matrix4, Point3};
-use crate::geometry::projectable::Projectable;
+use crate::geometry::{Point3, Projectable};
 use crate::geometry::triangle::Triangle2;
 use crate::geometry::triangle::triangle_parsing_error::TriangleParsingError;
+use crate::math::{Matrix4, vector_dot_matrix};
 
 /// Three-dimensional triangle composed with three [Point3]
 #[derive(Debug)]
@@ -10,6 +10,14 @@ pub struct Triangle3(
 	pub Point3,
 	pub Point3
 );
+
+impl Triangle3 {
+	pub fn rotate(&mut self, matrix: &Matrix4) {
+		self.0.update(vector_dot_matrix((self.0.x, self.0.y, self.0.z), &matrix));
+		self.1.update(vector_dot_matrix((self.1.x, self.1.y, self.1.z), &matrix));
+		self.2.update(vector_dot_matrix((self.2.x, self.2.y, self.2.z), &matrix));
+	}
+}
 
 impl Projectable<Triangle2> for Triangle3 {
 	fn get_projection(&self, matrix: &Matrix4, offset: f32, width: f32, height: f32) -> Triangle2 {

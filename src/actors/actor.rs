@@ -12,5 +12,5 @@ pub trait Drawable {
 /// Updatable entities
 pub trait Actor: Drawable {
 	/// Updates the entity state
-	fn update(&mut self);
+	fn update(&mut self, delta: u128);
 }

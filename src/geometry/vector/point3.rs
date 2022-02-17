@@ -1,4 +1,4 @@
-use crate::geometry::Matrix4;
+use crate::math::Matrix4;
 use crate::geometry::projectable::Projectable;
 use crate::geometry::vector::Point2;
 use crate::geometry::vector::point_parsing_error::PointParsingError;
@@ -14,6 +14,14 @@ pub struct Point3 {
 	pub x: f32,
 	pub y: f32,
 	pub z: f32
+}
+
+impl Point3 {
+	pub fn update(&mut self, new_pos: (f32, f32, f32)) {
+		self.x = new_pos.0;
+		self.y = new_pos.1;
+		self.z = new_pos.2;
+	}
 }
 
 impl Projectable<Point2> for Point3 {

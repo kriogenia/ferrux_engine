@@ -1,4 +1,4 @@
-use crate::geometry::Matrix4;
+use crate::math::Matrix4;
 
 /// 3D components able to be projected into a 2D space
 ///

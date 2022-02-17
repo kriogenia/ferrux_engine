@@ -3,6 +3,8 @@ use crate::actors::actor::Drawable;
 use crate::geometry::Projectable;
 use crate::engine::EngineCanvas;
 use crate::geometry::Mesh;
+use crate::math::builders::{ProjectionMatrixBuilder, RotationMatrixBuilder};
+use crate::math::vector_dot_matrix;
 
 /// Implementation of an actor with a mesh
 pub struct MeshActor {
@@ -15,6 +17,7 @@ impl MeshActor {
 	///
 	/// # Arguments
 	/// * `mesh` - Mesh of the actor
+	///
 	pub fn new(mesh: Mesh) -> Self {
 		Self {
 			mesh
@@ -43,5 +46,13 @@ impl Drawable for MeshActor {
 }
 
 impl Actor for MeshActor {
-	fn update(&mut self) {}
+	fn update(&mut self, delta: u128) {
+		let matrix = RotationMatrixBuilder::new().with_theta(delta as f32 * 0.1).build();
+
+		for triangle in &mut self.mesh.triangles {
+			triangle.rotate(&matrix);
+			println!("{:?}", triangle);
+		}
+
+	}
 }

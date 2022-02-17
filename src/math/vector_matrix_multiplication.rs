@@ -1,4 +1,4 @@
-use crate::geometry::Matrix4;
+use crate::math::Matrix4;
 
 /// Multiplies the vector with the given matrix using the provided Z value
 ///
@@ -21,8 +21,8 @@ type Vector = (f32, f32, f32);
 
 #[cfg(test)]
 mod tests {
-	use crate::geometry::{Matrix4, MatrixBuilder};
-	use crate::math::vector_dot_matrix;
+	use crate::math::{Matrix4, vector_dot_matrix};
+	use crate::math::builders::ProjectionMatrixBuilder;
 
 	#[test]
 	fn empty_matrix_multiplication() {
@@ -33,7 +33,7 @@ mod tests {
 	#[test]
 	fn vector_matrix_multiplication() {
 		let point = (1.0, 1.0, 1.0);
-		let matrix = MatrixBuilder::new()
+		let matrix = ProjectionMatrixBuilder::new()
 			.set_height(1)
 			.set_width(1)
 			.set_fov(90.0)
