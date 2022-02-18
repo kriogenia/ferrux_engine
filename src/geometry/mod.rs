@@ -1,9 +1,9 @@
 pub use mesh::Mesh;
-pub use vector::Point3;
 pub use projectable::Projectable;
+pub use vector::Point3;
 
-mod mesh;
 mod geometry_error;
-mod vector;
-mod triangle;
+mod mesh;
 mod projectable;
+mod triangle;
+mod vector;

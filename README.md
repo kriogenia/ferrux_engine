@@ -16,7 +16,23 @@ Rust.
 
 TBI
 
+## Configuration
+
+The class **EngineConfig** contains all the possible fields that you can
+customize in the engine. To use it you can just build a new one with *default*
+and then set all the properties as you like. Available properties:
+
+* `title` of window. By default, "Rust 3D Engine".
+* `width` of the window. By default, 960.
+* `height` of the window. By default, 640.
+* `fov` or field of view, in degrees. By default, 90.
+* `screen_position` from the user. By default, 0.1.
+* `view_limit`, max distance to render. By default, 1000.0
+* `z_offset`, added distance in the Z-axis. By default, 3.0.
+
 ## Architecture
+
+See the [class diagram](/uml/class.svg)
 
 The basis of the program are the **EngineLoop** and the **Rust3DEngine**.
 The first is a loop to run the engine on a different thread and manage

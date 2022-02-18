@@ -1,22 +1,20 @@
-use rust_3d_engine::engine::{EngineError, EngineLoop, Rust3DEngine};
-
-/// Default width for the window
-const WIDTH: u32 = 960;
-/// Default height for the window
-const HEIGHT: u32 = 640;
+use rust_3d_engine::engine::{EngineConfig, EngineError, EngineLoop, Rust3DEngine};
 
 fn main() -> Result<(), EngineError> {
-	env_logger::init();
+    env_logger::init();
 
-	let engine_loop = EngineLoop::new();
+    let config = EngineConfig::default()
+        .set_title("rust_3d_engine".to_string())
+        .set_width(1240)
+        .set_height(720)
+        .set_fov(90.0)
+        .set_z_offset(5.0);
 
-	let title = "Rust 3D Engine".to_string();
-	let engine = Rust3DEngine::new(title,
-	                                   WIDTH as f64,
-	                                   HEIGHT as f64,
-	                                   engine_loop.event_loop())?;
+    let engine_loop = EngineLoop::new();
 
-	engine_loop.run(engine);
+    let engine = Rust3DEngine::new(engine_loop.event_loop(), config)?;
 
-	Ok(())
+    engine_loop.run(engine);
+
+    Ok(())
 }

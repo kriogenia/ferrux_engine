@@ -6,15 +6,13 @@ use crate::math::Matrix4;
 /// Output type of the projection
 ///
 pub trait Projectable<T> {
-
-	/// Returns the two-dimensional projection of the component
-	///
-	/// # Arguments
-	/// * `matrix` - Projection matrix
-	/// * `offset` - Z-Offset to apply for screen distance
-	/// * `width`  - Screen width
-	/// * `height` - Screen height
-	///
-	fn get_projection(&self, matrix: &Matrix4, offset: f32, width: f32, height: f32) -> T;
-
+    /// Returns the two-dimensional projection of the component
+    ///
+    /// # Arguments
+    /// * `matrix` - Projection matrix
+    /// * `offset` - Z-Offset to apply for screen distance
+    /// * `width`  - Screen width
+    /// * `height` - Screen height
+    ///
+    fn get_projection(&self, matrix: &Matrix4, offset: f32, width: f32, height: f32) -> T;
 }
