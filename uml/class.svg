@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" height="1426px" preserveAspectRatio="none" style="width:993px;height:1426px;background:#FFFFFF;" version="1.1" viewBox="0 0 993 1426" width="993px" zoomAndPan="magnify"><defs/><g><!--MD5=[da789d03811df27b295cdb829d6c353c]
+class EngineLoop--><g id="elem_EngineLoop"><rect codeLine="3" fill="#F1F1F1" height="113.1875" id="EngineLoop" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="180" x="155.5" y="7"/><ellipse cx="198.85" cy="23" fill="#ADD1B2" rx="11" ry="11" style="stroke:#181818;stroke-width:1.0;"/><path d="M201.1938,18.6719 C200.2563,18.2344 199.6625,18.0938 198.7875,18.0938 C196.1625,18.0938 194.1625,20.1719 194.1625,22.8906 L194.1625,24.0156 C194.1625,26.5938 196.2719,28.4844 199.1625,28.4844 C200.3813,28.4844 201.5375,28.1875 202.2875,27.6406 C202.8656,27.2344 203.1938,26.7813 203.1938,26.3906 C203.1938,25.9375 202.8031,25.5469 202.3344,25.5469 C202.1156,25.5469 201.9125,25.625 201.725,25.8125 C201.2719,26.2969 201.2719,26.2969 201.0844,26.3906 C200.6625,26.6563 199.975,26.7813 199.2094,26.7813 C197.1625,26.7813 195.8656,25.6875 195.8656,23.9844 L195.8656,22.8906 C195.8656,21.1094 197.1156,19.7969 198.85,19.7969 C199.4281,19.7969 200.0375,19.9531 200.5063,20.2031 C200.9906,20.4844 201.1625,20.7031 201.2563,21.1094 C201.3188,21.5156 201.35,21.6406 201.4906,21.7656 C201.6313,21.9063 201.8656,22.0156 202.0844,22.0156 C202.35,22.0156 202.6156,21.875 202.7875,21.6563 C202.8969,21.5 202.9281,21.3125 202.9281,20.8906 L202.9281,19.4688 C202.9281,19.0313 202.9125,18.9063 202.8188,18.75 C202.6625,18.4844 202.3813,18.3438 202.0844,18.3438 C201.7875,18.3438 201.5844,18.4375 201.3656,18.75 L201.1938,18.6719 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="85" x="219.15" y="27.8467">EngineLoop</text><line style="stroke:#181818;stroke-width:0.5;" x1="156.5" x2="334.5" y1="39" y2="39"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="168" x="161.5" y="55.9951">event_loop: EventLoop</text><line style="stroke:#181818;stroke-width:0.5;" x1="156.5" x2="334.5" y1="63.2969" y2="63.2969"/><ellipse cx="166.5" cy="74.2969" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="76" x="175.5" y="80.292">new(): Self</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="0" x="179.5" y="96.5889"/><ellipse cx="166.5" cy="106.8906" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="134" x="175.5" y="112.8857">run(Rust3DEngine)</text></g><!--MD5=[c17688b9b059bba6e3d892a33c60870a]
+class Rust3DEngine--><g id="elem_Rust3DEngine"><rect codeLine="11" fill="#F1F1F1" height="162.0781" id="Rust3DEngine" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="322" x="84.5" y="181"/><ellipse cx="190.75" cy="197" fill="#ADD1B2" rx="11" ry="11" style="stroke:#181818;stroke-width:1.0;"/><path d="M193.0938,192.6719 C192.1563,192.2344 191.5625,192.0938 190.6875,192.0938 C188.0625,192.0938 186.0625,194.1719 186.0625,196.8906 L186.0625,198.0156 C186.0625,200.5938 188.1719,202.4844 191.0625,202.4844 C192.2813,202.4844 193.4375,202.1875 194.1875,201.6406 C194.7656,201.2344 195.0938,200.7813 195.0938,200.3906 C195.0938,199.9375 194.7031,199.5469 194.2344,199.5469 C194.0156,199.5469 193.8125,199.625 193.625,199.8125 C193.1719,200.2969 193.1719,200.2969 192.9844,200.3906 C192.5625,200.6563 191.875,200.7813 191.1094,200.7813 C189.0625,200.7813 187.7656,199.6875 187.7656,197.9844 L187.7656,196.8906 C187.7656,195.1094 189.0156,193.7969 190.75,193.7969 C191.3281,193.7969 191.9375,193.9531 192.4063,194.2031 C192.8906,194.4844 193.0625,194.7031 193.1563,195.1094 C193.2188,195.5156 193.25,195.6406 193.3906,195.7656 C193.5313,195.9063 193.7656,196.0156 193.9844,196.0156 C194.25,196.0156 194.5156,195.875 194.6875,195.6563 C194.7969,195.5 194.8281,195.3125 194.8281,194.8906 L194.8281,193.4688 C194.8281,193.0313 194.8125,192.9063 194.7188,192.75 C194.5625,192.4844 194.2813,192.3438 193.9844,192.3438 C193.6875,192.3438 193.4844,192.4375 193.2656,192.75 L193.0938,192.6719 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="101" x="211.25" y="201.8467">Rust3DEngine</text><line style="stroke:#181818;stroke-width:0.5;" x1="85.5" x2="405.5" y1="213" y2="213"/><rect fill="none" height="6" style="stroke:#C82930;stroke-width:1.0;" width="6" x="92.5" y="221"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="171" x="104.5" y="229.9951">input: WinitInputHelper</text><rect fill="none" height="6" style="stroke:#C82930;stroke-width:1.0;" width="6" x="92.5" y="237.2969"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="118" x="104.5" y="246.292">window: Window</text><rect fill="none" height="6" style="stroke:#C82930;stroke-width:1.0;" width="6" x="92.5" y="253.5938"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="133" x="104.5" y="262.5889">time: SystemTime</text><line style="stroke:#181818;stroke-width:0.5;" x1="85.5" x2="405.5" y1="269.8906" y2="269.8906"/><ellipse cx="95.5" cy="280.8906" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="296" x="104.5" y="286.8857">new(title, width, height, EventLoop): Self</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="0" x="108.5" y="303.1826"/><ellipse cx="95.5" cy="313.4844" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="44" x="104.5" y="319.4795">draw()</text><ellipse cx="95.5" cy="329.7813" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="114" x="104.5" y="335.7764">update(&amp;Event)</text></g><!--MD5=[45d39b1b90d4de867ccd8903519e7962]
+class EngineCanvas--><g id="elem_EngineCanvas"><rect codeLine="22" fill="#F1F1F1" height="178.375" id="EngineCanvas" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="217" x="7" y="420"/><ellipse cx="61.75" cy="436" fill="#ADD1B2" rx="11" ry="11" style="stroke:#181818;stroke-width:1.0;"/><path d="M64.0938,431.6719 C63.1563,431.2344 62.5625,431.0938 61.6875,431.0938 C59.0625,431.0938 57.0625,433.1719 57.0625,435.8906 L57.0625,437.0156 C57.0625,439.5938 59.1719,441.4844 62.0625,441.4844 C63.2813,441.4844 64.4375,441.1875 65.1875,440.6406 C65.7656,440.2344 66.0938,439.7813 66.0938,439.3906 C66.0938,438.9375 65.7031,438.5469 65.2344,438.5469 C65.0156,438.5469 64.8125,438.625 64.625,438.8125 C64.1719,439.2969 64.1719,439.2969 63.9844,439.3906 C63.5625,439.6563 62.875,439.7813 62.1094,439.7813 C60.0625,439.7813 58.7656,438.6875 58.7656,436.9844 L58.7656,435.8906 C58.7656,434.1094 60.0156,432.7969 61.75,432.7969 C62.3281,432.7969 62.9375,432.9531 63.4063,433.2031 C63.8906,433.4844 64.0625,433.7031 64.1563,434.1094 C64.2188,434.5156 64.25,434.6406 64.3906,434.7656 C64.5313,434.9063 64.7656,435.0156 64.9844,435.0156 C65.25,435.0156 65.5156,434.875 65.6875,434.6563 C65.7969,434.5 65.8281,434.3125 65.8281,433.8906 L65.8281,432.4688 C65.8281,432.0313 65.8125,431.9063 65.7188,431.75 C65.5625,431.4844 65.2813,431.3438 64.9844,431.3438 C64.6875,431.3438 64.4844,431.4375 64.2656,431.75 L64.0938,431.6719 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="99" x="82.25" y="440.8467">EngineCanvas</text><line style="stroke:#181818;stroke-width:0.5;" x1="8" x2="223" y1="452" y2="452"/><rect fill="none" height="6" style="stroke:#C82930;stroke-width:1.0;" width="6" x="15" y="460"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="92" x="27" y="468.9951">pixels: Pixels</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="85" x="27" y="485.292">width: usize</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="92" x="27" y="501.5889">height: usize</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="91" x="27" y="517.8857">z_offset: f32</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="191" x="27" y="534.1826">projection_matrix: Matrix4</text><line style="stroke:#181818;stroke-width:0.5;" x1="8" x2="223" y1="541.4844" y2="541.4844"/><ellipse cx="18" cy="552.4844" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="147" x="27" y="558.4795">draw_line(start, end)</text><ellipse cx="18" cy="568.7813" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="58" x="27" y="574.7764">render()</text><ellipse cx="18" cy="585.0781" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="140" x="27" y="591.0732">resize(PhysicalSize)</text></g><!--MD5=[5732ef5d8cadc1a682f3583ff1ab369e]
+class Pixel--><g id="elem_Pixel"><rect codeLine="34" fill="#F1F1F1" height="80.5938" id="Pixel" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="66" x="82.5" y="675"/><ellipse cx="97.5" cy="691" fill="#EB937F" rx="11" ry="11" style="stroke:#181818;stroke-width:1.0;"/><path d="M96.2969,691.875 L97.75,691.875 L97.75,691.9844 C97.75,692.3906 97.7813,692.5469 97.8594,692.7031 C98.0156,692.9531 98.2969,693.1094 98.5938,693.1094 C98.8438,693.1094 99.1094,692.9688 99.2656,692.75 C99.3906,692.5938 99.4219,692.4375 99.4219,691.9844 L99.4219,690.0625 C99.4219,689.9063 99.4219,689.8594 99.4063,689.7031 C99.3438,689.2344 99.0313,688.9219 98.5781,688.9219 C98.3281,688.9219 98.0625,689.0625 97.8906,689.2813 C97.7813,689.4531 97.75,689.6094 97.75,690.0625 L97.75,690.1875 L96.2969,690.1875 L96.2969,687.7813 L100.2813,687.7813 L100.2813,688.6406 C100.2813,689.0469 100.3125,689.2188 100.3906,689.375 C100.5625,689.625 100.8438,689.7813 101.125,689.7813 C101.3906,689.7813 101.6563,689.6406 101.8281,689.4219 C101.9375,689.25 101.9688,689.1094 101.9688,688.6406 L101.9688,686.0938 L94.3438,686.0938 C93.9063,686.0938 93.7813,686.1094 93.625,686.2031 C93.375,686.3594 93.2188,686.6563 93.2188,686.9375 C93.2188,687.2188 93.3594,687.4688 93.5781,687.6406 C93.7344,687.75 93.9219,687.7813 94.3438,687.7813 L94.5938,687.7813 L94.5938,694.2969 L94.3438,694.2969 C93.9375,694.2969 93.7813,694.3125 93.625,694.4219 C93.375,694.5938 93.2188,694.8594 93.2188,695.1563 C93.2188,695.4219 93.3594,695.6719 93.5781,695.8281 C93.7188,695.9531 93.9531,696 94.3438,696 L102.3438,696 L102.3438,693.4219 C102.3438,692.9844 102.3125,692.8438 102.2344,692.6875 C102.0625,692.4375 101.7813,692.2813 101.5,692.2813 C101.2344,692.2813 100.9688,692.3906 100.7969,692.6406 C100.6875,692.7969 100.6563,692.9375 100.6563,693.4219 L100.6563,694.2969 L96.2969,694.2969 L96.2969,691.875 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="34" x="111.5" y="695.8467">Pixel</text><line style="stroke:#181818;stroke-width:0.5;" x1="83.5" x2="147.5" y1="707" y2="707"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="48" x="88.5" y="723.9951">BLACK</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="46" x="88.5" y="740.292">WHITE</text><line style="stroke:#181818;stroke-width:0.5;" x1="83.5" x2="147.5" y1="747.5938" y2="747.5938"/></g><!--MD5=[5d0a77e8f66918aa15fe0099dd6d4ba9]
+class Environment--><g id="elem_Environment"><rect codeLine="39" fill="#F1F1F1" height="113.1875" id="Environment" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="169" x="259" y="452.5"/><ellipse cx="293.8" cy="468.5" fill="#ADD1B2" rx="11" ry="11" style="stroke:#181818;stroke-width:1.0;"/><path d="M296.1438,464.1719 C295.2063,463.7344 294.6125,463.5938 293.7375,463.5938 C291.1125,463.5938 289.1125,465.6719 289.1125,468.3906 L289.1125,469.5156 C289.1125,472.0938 291.2219,473.9844 294.1125,473.9844 C295.3313,473.9844 296.4875,473.6875 297.2375,473.1406 C297.8156,472.7344 298.1438,472.2813 298.1438,471.8906 C298.1438,471.4375 297.7531,471.0469 297.2844,471.0469 C297.0656,471.0469 296.8625,471.125 296.675,471.3125 C296.2219,471.7969 296.2219,471.7969 296.0344,471.8906 C295.6125,472.1563 294.925,472.2813 294.1594,472.2813 C292.1125,472.2813 290.8156,471.1875 290.8156,469.4844 L290.8156,468.3906 C290.8156,466.6094 292.0656,465.2969 293.8,465.2969 C294.3781,465.2969 294.9875,465.4531 295.4563,465.7031 C295.9406,465.9844 296.1125,466.2031 296.2063,466.6094 C296.2688,467.0156 296.3,467.1406 296.4406,467.2656 C296.5813,467.4063 296.8156,467.5156 297.0344,467.5156 C297.3,467.5156 297.5656,467.375 297.7375,467.1563 C297.8469,467 297.8781,466.8125 297.8781,466.3906 L297.8781,464.9688 C297.8781,464.5313 297.8625,464.4063 297.7688,464.25 C297.6125,463.9844 297.3313,463.8438 297.0344,463.8438 C296.7375,463.8438 296.5344,463.9375 296.3156,464.25 L296.1438,464.1719 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="93" x="312.2" y="473.3467">Environment</text><line style="stroke:#181818;stroke-width:0.5;" x1="260" x2="427" y1="484.5" y2="484.5"/><line style="stroke:#181818;stroke-width:0.5;" x1="260" x2="427" y1="492.5" y2="492.5"/><ellipse cx="270" cy="503.5" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="80" x="279" y="509.4951">new() : Self</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="0" x="283" y="525.792"/><ellipse cx="270" cy="536.0938" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="143" x="279" y="542.0889">draw(EngineCanvas)</text><ellipse cx="270" cy="552.3906" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="98" x="279" y="558.3857">update(delta)</text></g><!--MD5=[630deb9ca358f01922be9b487b80131a]
+class Drawable--><g id="elem_Drawable"><rect codeLine="46" fill="#F1F1F1" height="64.2969" id="Drawable" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="169" x="463" y="477"/><ellipse cx="509.25" cy="493" fill="#B4A7E5" rx="11" ry="11" style="stroke:#181818;stroke-width:1.0;"/><path d="M510.2031,489.7813 L511.9219,489.7813 C512.3125,489.7813 512.5,489.75 512.625,489.6719 C512.8906,489.5156 513.0313,489.2344 513.0313,488.9375 C513.0313,488.6719 512.9219,488.4063 512.6875,488.2344 C512.5156,488.125 512.375,488.0938 511.9219,488.0938 L506.7813,488.0938 C506.3438,488.0938 506.2188,488.1094 506.0625,488.2031 C505.8125,488.3594 505.6563,488.6563 505.6563,488.9375 C505.6563,489.2188 505.7969,489.4688 506.0156,489.6406 C506.1719,489.75 506.3594,489.7813 506.7813,489.7813 L508.5,489.7813 L508.5,496.2969 L506.7813,496.2969 C506.3438,496.2969 506.2188,496.3125 506.0625,496.4219 C505.8125,496.5781 505.6563,496.8594 505.6563,497.1563 C505.6563,497.4063 505.7969,497.6719 506.0156,497.8281 C506.1719,497.9531 506.375,498 506.7813,498 L511.9219,498 C512.6719,498 513.0313,497.7188 513.0313,497.1563 C513.0313,496.875 512.9219,496.625 512.6875,496.4531 C512.5156,496.3281 512.375,496.2969 511.9219,496.2969 L510.2031,496.2969 L510.2031,489.7813 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="14" font-style="italic" lengthAdjust="spacing" textLength="68" x="529.75" y="497.8467">Drawable</text><line style="stroke:#181818;stroke-width:0.5;" x1="464" x2="631" y1="509" y2="509"/><line style="stroke:#181818;stroke-width:0.5;" x1="464" x2="631" y1="517" y2="517"/><ellipse cx="474" cy="528" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="143" x="483" y="533.9951">draw(EngineCanvas)</text></g><!--MD5=[44201db48fb57df1a9c7f5b6b15426b0]
+class Actor--><g id="elem_Actor"><rect codeLine="50" fill="#F1F1F1" height="64.2969" id="Actor" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="124" x="434.5" y="683.5"/><ellipse cx="473.8" cy="699.5" fill="#B4A7E5" rx="11" ry="11" style="stroke:#181818;stroke-width:1.0;"/><path d="M474.7531,696.2813 L476.4719,696.2813 C476.8625,696.2813 477.05,696.25 477.175,696.1719 C477.4406,696.0156 477.5813,695.7344 477.5813,695.4375 C477.5813,695.1719 477.4719,694.9063 477.2375,694.7344 C477.0656,694.625 476.925,694.5938 476.4719,694.5938 L471.3313,694.5938 C470.8938,694.5938 470.7688,694.6094 470.6125,694.7031 C470.3625,694.8594 470.2063,695.1563 470.2063,695.4375 C470.2063,695.7188 470.3469,695.9688 470.5656,696.1406 C470.7219,696.25 470.9094,696.2813 471.3313,696.2813 L473.05,696.2813 L473.05,702.7969 L471.3313,702.7969 C470.8938,702.7969 470.7688,702.8125 470.6125,702.9219 C470.3625,703.0781 470.2063,703.3594 470.2063,703.6563 C470.2063,703.9063 470.3469,704.1719 470.5656,704.3281 C470.7219,704.4531 470.925,704.5 471.3313,704.5 L476.4719,704.5 C477.2219,704.5 477.5813,704.2188 477.5813,703.6563 C477.5813,703.375 477.4719,703.125 477.2375,702.9531 C477.0656,702.8281 476.925,702.7969 476.4719,702.7969 L474.7531,702.7969 L474.7531,696.2813 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="14" font-style="italic" lengthAdjust="spacing" textLength="38" x="493.2" y="704.3467">Actor</text><line style="stroke:#181818;stroke-width:0.5;" x1="435.5" x2="557.5" y1="715.5" y2="715.5"/><line style="stroke:#181818;stroke-width:0.5;" x1="435.5" x2="557.5" y1="723.5" y2="723.5"/><ellipse cx="445.5" cy="734.5" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="98" x="454.5" y="740.4951">update(delta)</text></g><!--MD5=[3dddd06ecb0202ed48f52c544de830df]
+class Projectable--><g id="elem_Projectable"><rect codeLine="54" fill="#F1F1F1" height="64.2969" id="Projectable" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="366" x="620.5" y="966.5"/><ellipse cx="759.25" cy="982.5" fill="#B4A7E5" rx="11" ry="11" style="stroke:#181818;stroke-width:1.0;"/><path d="M760.2031,979.2813 L761.9219,979.2813 C762.3125,979.2813 762.5,979.25 762.625,979.1719 C762.8906,979.0156 763.0313,978.7344 763.0313,978.4375 C763.0313,978.1719 762.9219,977.9063 762.6875,977.7344 C762.5156,977.625 762.375,977.5938 761.9219,977.5938 L756.7813,977.5938 C756.3438,977.5938 756.2188,977.6094 756.0625,977.7031 C755.8125,977.8594 755.6563,978.1563 755.6563,978.4375 C755.6563,978.7188 755.7969,978.9688 756.0156,979.1406 C756.1719,979.25 756.3594,979.2813 756.7813,979.2813 L758.5,979.2813 L758.5,985.7969 L756.7813,985.7969 C756.3438,985.7969 756.2188,985.8125 756.0625,985.9219 C755.8125,986.0781 755.6563,986.3594 755.6563,986.6563 C755.6563,986.9063 755.7969,987.1719 756.0156,987.3281 C756.1719,987.4531 756.375,987.5 756.7813,987.5 L761.9219,987.5 C762.6719,987.5 763.0313,987.2188 763.0313,986.6563 C763.0313,986.375 762.9219,986.125 762.6875,985.9531 C762.5156,985.8281 762.375,985.7969 761.9219,985.7969 L760.2031,985.7969 L760.2031,979.2813 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="14" font-style="italic" lengthAdjust="spacing" textLength="80" x="779.75" y="987.3467">Projectable</text><line style="stroke:#181818;stroke-width:0.5;" x1="621.5" x2="985.5" y1="998.5" y2="998.5"/><line style="stroke:#181818;stroke-width:0.5;" x1="621.5" x2="985.5" y1="1006.5" y2="1006.5"/><ellipse cx="631.5" cy="1017.5" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="340" x="640.5" y="1023.4951">get_projection(Matrix4, width, height, z_offset)</text></g><!--MD5=[cf92f8dc397fb9cdfee8bf4b48ed3276]
+class MeshActor--><g id="elem_MeshActor"><rect codeLine="58" fill="#F1F1F1" height="64.2969" id="MeshActor" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="139" x="427" y="817"/><ellipse cx="455.5" cy="833" fill="#ADD1B2" rx="11" ry="11" style="stroke:#181818;stroke-width:1.0;"/><path d="M457.8438,828.6719 C456.9063,828.2344 456.3125,828.0938 455.4375,828.0938 C452.8125,828.0938 450.8125,830.1719 450.8125,832.8906 L450.8125,834.0156 C450.8125,836.5938 452.9219,838.4844 455.8125,838.4844 C457.0313,838.4844 458.1875,838.1875 458.9375,837.6406 C459.5156,837.2344 459.8438,836.7813 459.8438,836.3906 C459.8438,835.9375 459.4531,835.5469 458.9844,835.5469 C458.7656,835.5469 458.5625,835.625 458.375,835.8125 C457.9219,836.2969 457.9219,836.2969 457.7344,836.3906 C457.3125,836.6563 456.625,836.7813 455.8594,836.7813 C453.8125,836.7813 452.5156,835.6875 452.5156,833.9844 L452.5156,832.8906 C452.5156,831.1094 453.7656,829.7969 455.5,829.7969 C456.0781,829.7969 456.6875,829.9531 457.1563,830.2031 C457.6406,830.4844 457.8125,830.7031 457.9063,831.1094 C457.9688,831.5156 458,831.6406 458.1406,831.7656 C458.2813,831.9063 458.5156,832.0156 458.7344,832.0156 C459,832.0156 459.2656,831.875 459.4375,831.6563 C459.5469,831.5 459.5781,831.3125 459.5781,830.8906 L459.5781,829.4688 C459.5781,829.0313 459.5625,828.9063 459.4688,828.75 C459.3125,828.4844 459.0313,828.3438 458.7344,828.3438 C458.4375,828.3438 458.2344,828.4375 458.0156,828.75 L457.8438,828.6719 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="77" x="472.5" y="837.8467">MeshActor</text><line style="stroke:#181818;stroke-width:0.5;" x1="428" x2="565" y1="849" y2="849"/><line style="stroke:#181818;stroke-width:0.5;" x1="428" x2="565" y1="857" y2="857"/><ellipse cx="438" cy="868" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="113" x="447" y="873.9951">new(Mesh): Self</text></g><!--MD5=[49b4333bed3a745cc53311fcf54bbfcc]
+class Mesh--><g id="elem_Mesh"><rect codeLine="62" fill="#F1F1F1" height="80.5938" id="Mesh" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="178" x="407.5" y="958"/><ellipse cx="473.75" cy="974" fill="#ADD1B2" rx="11" ry="11" style="stroke:#181818;stroke-width:1.0;"/><path d="M476.0938,969.6719 C475.1563,969.2344 474.5625,969.0938 473.6875,969.0938 C471.0625,969.0938 469.0625,971.1719 469.0625,973.8906 L469.0625,975.0156 C469.0625,977.5938 471.1719,979.4844 474.0625,979.4844 C475.2813,979.4844 476.4375,979.1875 477.1875,978.6406 C477.7656,978.2344 478.0938,977.7813 478.0938,977.3906 C478.0938,976.9375 477.7031,976.5469 477.2344,976.5469 C477.0156,976.5469 476.8125,976.625 476.625,976.8125 C476.1719,977.2969 476.1719,977.2969 475.9844,977.3906 C475.5625,977.6563 474.875,977.7813 474.1094,977.7813 C472.0625,977.7813 470.7656,976.6875 470.7656,974.9844 L470.7656,973.8906 C470.7656,972.1094 472.0156,970.7969 473.75,970.7969 C474.3281,970.7969 474.9375,970.9531 475.4063,971.2031 C475.8906,971.4844 476.0625,971.7031 476.1563,972.1094 C476.2188,972.5156 476.25,972.6406 476.3906,972.7656 C476.5313,972.9063 476.7656,973.0156 476.9844,973.0156 C477.25,973.0156 477.5156,972.875 477.6875,972.6563 C477.7969,972.5 477.8281,972.3125 477.8281,971.8906 L477.8281,970.4688 C477.8281,970.0313 477.8125,969.9063 477.7188,969.75 C477.5625,969.4844 477.2813,969.3438 476.9844,969.3438 C476.6875,969.3438 476.4844,969.4375 476.2656,969.75 L476.0938,969.6719 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="37" x="494.25" y="978.8467">Mesh</text><line style="stroke:#181818;stroke-width:0.5;" x1="408.5" x2="584.5" y1="990" y2="990"/><line style="stroke:#181818;stroke-width:0.5;" x1="408.5" x2="584.5" y1="998" y2="998"/><ellipse cx="418.5" cy="1009" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="139" x="427.5" y="1014.9951">new(triangles): Self</text><ellipse cx="418.5" cy="1025.2969" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="152" x="427.5" y="1031.292">try_form(string): Self</text></g><!--MD5=[6f55dd7e8150d1e1dbf8ac9f535682bc]
+class Triangle3--><g id="elem_Triangle3"><rect codeLine="67" fill="#F1F1F1" height="113.1875" id="Triangle3" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="178" x="572.5" y="1116"/><ellipse cx="623.75" cy="1132" fill="#ADD1B2" rx="11" ry="11" style="stroke:#181818;stroke-width:1.0;"/><path d="M626.0938,1127.6719 C625.1563,1127.2344 624.5625,1127.0938 623.6875,1127.0938 C621.0625,1127.0938 619.0625,1129.1719 619.0625,1131.8906 L619.0625,1133.0156 C619.0625,1135.5938 621.1719,1137.4844 624.0625,1137.4844 C625.2813,1137.4844 626.4375,1137.1875 627.1875,1136.6406 C627.7656,1136.2344 628.0938,1135.7813 628.0938,1135.3906 C628.0938,1134.9375 627.7031,1134.5469 627.2344,1134.5469 C627.0156,1134.5469 626.8125,1134.625 626.625,1134.8125 C626.1719,1135.2969 626.1719,1135.2969 625.9844,1135.3906 C625.5625,1135.6563 624.875,1135.7813 624.1094,1135.7813 C622.0625,1135.7813 620.7656,1134.6875 620.7656,1132.9844 L620.7656,1131.8906 C620.7656,1130.1094 622.0156,1128.7969 623.75,1128.7969 C624.3281,1128.7969 624.9375,1128.9531 625.4063,1129.2031 C625.8906,1129.4844 626.0625,1129.7031 626.1563,1130.1094 C626.2188,1130.5156 626.25,1130.6406 626.3906,1130.7656 C626.5313,1130.9063 626.7656,1131.0156 626.9844,1131.0156 C627.25,1131.0156 627.5156,1130.875 627.6875,1130.6563 C627.7969,1130.5 627.8281,1130.3125 627.8281,1129.8906 L627.8281,1128.4688 C627.8281,1128.0313 627.8125,1127.9063 627.7188,1127.75 C627.5625,1127.4844 627.2813,1127.3438 626.9844,1127.3438 C626.6875,1127.3438 626.4844,1127.4375 626.2656,1127.75 L626.0938,1127.6719 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="67" x="644.25" y="1136.8467">Triangle3</text><line style="stroke:#181818;stroke-width:0.5;" x1="573.5" x2="749.5" y1="1148" y2="1148"/><line style="stroke:#181818;stroke-width:0.5;" x1="573.5" x2="749.5" y1="1156" y2="1156"/><ellipse cx="583.5" cy="1167" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="139" x="592.5" y="1172.9951">new(triangles): Self</text><ellipse cx="583.5" cy="1183.2969" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="152" x="592.5" y="1189.292">try_form(string): Self</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="0" x="596.5" y="1205.5889"/><ellipse cx="583.5" cy="1215.8906" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="109" x="592.5" y="1221.8857">rotate(Matrix4)</text></g><!--MD5=[97ef0a0b257ce5f7f49583c40eb9a351]
+class Point3--><g id="elem_Point3"><rect codeLine="74" fill="#F1F1F1" height="113.1875" id="Point3" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="178" x="656.5" y="1306"/><ellipse cx="717.75" cy="1322" fill="#ADD1B2" rx="11" ry="11" style="stroke:#181818;stroke-width:1.0;"/><path d="M720.0938,1317.6719 C719.1563,1317.2344 718.5625,1317.0938 717.6875,1317.0938 C715.0625,1317.0938 713.0625,1319.1719 713.0625,1321.8906 L713.0625,1323.0156 C713.0625,1325.5938 715.1719,1327.4844 718.0625,1327.4844 C719.2813,1327.4844 720.4375,1327.1875 721.1875,1326.6406 C721.7656,1326.2344 722.0938,1325.7813 722.0938,1325.3906 C722.0938,1324.9375 721.7031,1324.5469 721.2344,1324.5469 C721.0156,1324.5469 720.8125,1324.625 720.625,1324.8125 C720.1719,1325.2969 720.1719,1325.2969 719.9844,1325.3906 C719.5625,1325.6563 718.875,1325.7813 718.1094,1325.7813 C716.0625,1325.7813 714.7656,1324.6875 714.7656,1322.9844 L714.7656,1321.8906 C714.7656,1320.1094 716.0156,1318.7969 717.75,1318.7969 C718.3281,1318.7969 718.9375,1318.9531 719.4063,1319.2031 C719.8906,1319.4844 720.0625,1319.7031 720.1563,1320.1094 C720.2188,1320.5156 720.25,1320.6406 720.3906,1320.7656 C720.5313,1320.9063 720.7656,1321.0156 720.9844,1321.0156 C721.25,1321.0156 721.5156,1320.875 721.6875,1320.6563 C721.7969,1320.5 721.8281,1320.3125 721.8281,1319.8906 L721.8281,1318.4688 C721.8281,1318.0313 721.8125,1317.9063 721.7188,1317.75 C721.5625,1317.4844 721.2813,1317.3438 720.9844,1317.3438 C720.6875,1317.3438 720.4844,1317.4375 720.2656,1317.75 L720.0938,1317.6719 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="47" x="738.25" y="1326.8467">Point3</text><line style="stroke:#181818;stroke-width:0.5;" x1="657.5" x2="833.5" y1="1338" y2="1338"/><line style="stroke:#181818;stroke-width:0.5;" x1="657.5" x2="833.5" y1="1346" y2="1346"/><ellipse cx="667.5" cy="1357" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="139" x="676.5" y="1362.9951">new(triangles): Self</text><ellipse cx="667.5" cy="1373.2969" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="152" x="676.5" y="1379.292">try_form(string): Self</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="0" x="680.5" y="1395.5889"/><ellipse cx="667.5" cy="1405.8906" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="123" x="676.5" y="1411.8857">update(new_pos)</text></g><!--MD5=[034ad3bd339e45ac8e1678992dbfd9cd]
+link EngineLoop to Rust3DEngine--><g id="link_EngineLoop_Rust3DEngine"><path codeLine="81" d="M245.5,120.02 C245.5,138.86 245.5,160.3 245.5,180.68 " fill="none" id="EngineLoop-Rust3DEngine" style="stroke:#181818;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/></g><!--MD5=[b40ee43d8a80c733ab3be7967d65caa2]
+reverse link Rust3DEngine to EngineCanvas--><g id="link_Rust3DEngine_EngineCanvas"><path codeLine="82" d="M196.733,354.91 C185.426,376.22 173.419,398.84 162.203,419.982 " fill="none" id="Rust3DEngine-backto-EngineCanvas" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="202.933,343.22,196.5857,346.6422,197.3033,353.8175,203.6507,350.3953,202.933,343.22" style="stroke:#181818;stroke-width:1.0;"/><rect fill="none" height="6" style="stroke:#C82930;stroke-width:1.0;" width="6" x="187.5" y="379.0664"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="46" x="197.5" y="386.0669">canvas</text></g><!--MD5=[e9c4e2a4f2931077e5d1edd824e2a3d6]
+reverse link Rust3DEngine to Environment--><g id="link_Rust3DEngine_Environment"><path codeLine="83" d="M282.521,355.55 C295.567,388.17 309.819,423.798 321.262,452.406 " fill="none" id="Rust3DEngine-backto-Environment" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="277.589,343.22,276.1034,350.2764,282.0457,354.3617,283.5313,347.3053,277.589,343.22" style="stroke:#181818;stroke-width:1.0;"/><rect fill="none" height="6" style="stroke:#C82930;stroke-width:1.0;" width="6" x="297.5" y="379.0664"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="95" x="307.5" y="386.0669">environmment</text></g><!--MD5=[ecaf7715161a1fbfe7c438c9fa5ec5d4]
+reverse link EngineCanvas to Pixel--><g id="link_EngineCanvas_Pixel"><path codeLine="84" d="M115.5,611.424 C115.5,633.934 115.5,656.496 115.5,674.749 " fill="none" id="EngineCanvas-backto-Pixel" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="none" points="115.5,598.21,111.5,604.21,115.5,610.21,119.5,604.21,115.5,598.21" style="stroke:#181818;stroke-width:1.0;"/><rect fill="none" height="6" style="stroke:#C82930;stroke-width:1.0;" width="6" x="118.5" y="634.0664"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="46" x="128.5" y="641.0669">canvas</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="95" x="16.418" y="618.5775">[width][height]</text></g><!--MD5=[b598b222eca8b343cce6436db802f353]
+reverse link Drawable to Actor--><g id="link_Drawable_Actor"><path codeLine="85" d="M534.876,560.62 C525.271,599.135 512.361,650.901 504.235,683.484 " fill="none" id="Drawable-backto-Actor" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="none" points="528.123,558.771,539.754,541.059,541.707,562.159,528.123,558.771" style="stroke:#181818;stroke-width:1.0;"/></g><!--MD5=[48af55391bec83b2e7a56bd13583c1fe]
+reverse link Environment to Actor--><g id="link_Environment_Actor"><path codeLine="86" d="M392.919,576.054 C419.863,612.067 451.954,654.959 473.2,683.357 " fill="none" id="Environment-backto-Actor" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="none" points="385.106,565.61,385.497,572.8105,392.294,575.219,391.903,568.0185,385.106,565.61" style="stroke:#181818;stroke-width:1.0;"/><rect fill="none" height="6" style="stroke:#C82930;stroke-width:1.0;" width="6" x="446.5" y="634.0664"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="40" x="456.5" y="641.0669">actors</text></g><!--MD5=[a3223cc03a6446e74318de4cde309b2f]
+reverse link Actor to MeshActor--><g id="link_Actor_MeshActor"><path codeLine="87" d="M496.5,767.845 C496.5,784.3 496.5,802.02 496.5,816.604 " fill="none" id="Actor-backto-MeshActor" style="stroke:#181818;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/><polygon fill="none" points="489.5,767.664,496.5,747.664,503.5,767.664,489.5,767.664" style="stroke:#181818;stroke-width:1.0;"/></g><!--MD5=[8e6a91fb8ea3d7581c1f9e74f4afb826]
+reverse link MeshActor to Mesh--><g id="link_MeshActor_Mesh"><path codeLine="88" d="M496.5,886.376 C496.5,908.055 496.5,935.59 496.5,957.827 " fill="none" id="MeshActor-backto-Mesh" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="496.5,881.281,492.5,890.281,496.5,886.281,500.5,890.281,496.5,881.281" style="stroke:#181818;stroke-width:1.0;"/><rect fill="none" height="6" style="stroke:#C82930;stroke-width:1.0;" width="6" x="499.5" y="917.0664"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="36" x="509.5" y="924.0669">mesh</text></g><!--MD5=[cf9352321a463d7f43c1b550e9346c78]
+reverse link Mesh to Triangle3--><g id="link_Mesh_Triangle3"><path codeLine="89" d="M544.014,1049.03 C564.061,1069.927 587.49,1094.35 608.129,1115.864 " fill="none" id="Mesh-backto-Triangle3" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="none" points="534.769,1039.393,536.0362,1046.4919,543.0764,1048.0525,541.8092,1040.9536,534.769,1039.393" style="stroke:#181818;stroke-width:1.0;"/><ellipse cx="584.5" cy="1078.0664" fill="none" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="55" x="591.5" y="1082.0669">triangles</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8" x="531.8023" y="1058.6072">n</text></g><!--MD5=[27604bcd539be738bdd86c27382fcd85]
+reverse link Triangle3 to Point3--><g id="link_Triangle3_Point3"><path codeLine="90" d="M691.695,1241.079 C701.211,1262.377 711.607,1285.644 720.702,1306 " fill="none" id="Triangle3-backto-Point3" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="none" points="686.362,1229.143,685.1575,1236.2528,691.2572,1240.0991,692.4616,1232.9893,686.362,1229.143" style="stroke:#181818;stroke-width:1.0;"/><ellipse cx="711.5" cy="1268.0664" fill="none" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="51" x="718.5" y="1272.0669">vertices</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8" x="681.0349" y="1249.4247">3</text></g><!--MD5=[bb5c72a22c6875f90e20f70d9224c89e]
+reverse link Projectable to Triangle3--><g id="link_Projectable_Triangle3"><path codeLine="91" d="M764.977,1046.161 C747.216,1067.675 725.998,1093.375 707.413,1115.888 " fill="none" id="Projectable-backto-Triangle3" style="stroke:#181818;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/><polygon fill="none" points="759.654,1041.614,777.785,1030.648,770.45,1050.528,759.654,1041.614" style="stroke:#181818;stroke-width:1.0;"/></g><!--MD5=[f207c7162e76ea4ce8688e1e410328ed]
+reverse link Projectable to Point3--><g id="link_Projectable_Point3"><path codeLine="92" d="M803.1,1050.93 C801.684,1106.968 796.486,1198.926 778.5,1276 C776.222,1285.762 773.067,1295.897 769.604,1305.63 " fill="none" id="Projectable-backto-Point3" style="stroke:#181818;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/><polygon fill="none" points="796.107,1050.495,803.485,1030.631,810.104,1050.761,796.107,1050.495" style="stroke:#181818;stroke-width:1.0;"/></g><!--MD5=[315cd7c536fe2b478d0e6e5fa6d24f16]
+@startuml
+'https://plantuml.com/class-diagram
+
+class EngineLoop {
+    event_loop: EventLoop
+
+    + new(): Self
+
+    + run(Rust3DEngine)
+}
+
+class Rust3DEngine {
+    - input: WinitInputHelper
+    - window: Window
+    - time: SystemTime
+
+    + new(title, width, height, EventLoop): Self
+
+    + draw()
+    + update(&Event)
+}
+
+class EngineCanvas {
+	- pixels: Pixels
+	width: usize
+	height: usize
+	z_offset: f32
+	projection_matrix: Matrix4
+
+	+ draw_line(start, end)
+	+ render()
+	+ resize(PhysicalSize)
+}
+
+enum Pixel {
+    BLACK
+    WHITE
+}
+
+class Environment {
+    + new() : Self
+
+    + draw(EngineCanvas)
+    + update(delta)
+}
+
+interface Drawable {
+    + draw(EngineCanvas)
+}
+
+interface Actor {
+    + update(delta)
+}
+
+interface Projectable {
+    + get_projection(Matrix4, width, height, z_offset)
+}
+
+class MeshActor {
+    + new(Mesh): Self
+}
+
+class Mesh {
+    + new(triangles): Self
+    + try_form(string): Self
+}
+
+class Triangle3 {
+    + new(triangles): Self
+    + try_form(string): Self
+
+    +rotate(Matrix4)
+}
+
+class Point3 {
+    + new(triangles): Self
+    + try_form(string): Self
+
+    + update(new_pos)
+}
+
+EngineLoop .. Rust3DEngine
+Rust3DEngine *- - EngineCanvas : -canvas
+Rust3DEngine *- - Environment : -environmment
+EngineCanvas "[width][height]" o- - Pixel : -canvas
+Drawable <|- - Actor
+Environment o- - Actor : -actors
+Actor <|.. MeshActor
+MeshActor <- - Mesh : - mesh
+Mesh "n" o- - Triangle3 : + triangles
+Triangle3 "3" o- - Point3 : + vertices
+Projectable <|.. Triangle3
+Projectable <|.. Point3
+@enduml
+
+@startuml
+
+class EngineLoop {
+    event_loop: EventLoop
+
+    + new(): Self
+
+    + run(Rust3DEngine)
+}
+
+class Rust3DEngine {
+    - input: WinitInputHelper
+    - window: Window
+    - time: SystemTime
+
+    + new(title, width, height, EventLoop): Self
+
+    + draw()
+    + update(&Event)
+}
+
+class EngineCanvas {
+	- pixels: Pixels
+	width: usize
+	height: usize
+	z_offset: f32
+	projection_matrix: Matrix4
+
+	+ draw_line(start, end)
+	+ render()
+	+ resize(PhysicalSize)
+}
+
+enum Pixel {
+    BLACK
+    WHITE
+}
+
+class Environment {
+    + new() : Self
+
+    + draw(EngineCanvas)
+    + update(delta)
+}
+
+interface Drawable {
+    + draw(EngineCanvas)
+}
+
+interface Actor {
+    + update(delta)
+}
+
+interface Projectable {
+    + get_projection(Matrix4, width, height, z_offset)
+}
+
+class MeshActor {
+    + new(Mesh): Self
+}
+
+class Mesh {
+    + new(triangles): Self
+    + try_form(string): Self
+}
+
+class Triangle3 {
+    + new(triangles): Self
+    + try_form(string): Self
+
+    +rotate(Matrix4)
+}
+
+class Point3 {
+    + new(triangles): Self
+    + try_form(string): Self
+
+    + update(new_pos)
+}
+
+EngineLoop .. Rust3DEngine
+Rust3DEngine *- - EngineCanvas : -canvas
+Rust3DEngine *- - Environment : -environmment
+EngineCanvas "[width][height]" o- - Pixel : -canvas
+Drawable <|- - Actor
+Environment o- - Actor : -actors
+Actor <|.. MeshActor
+MeshActor <- - Mesh : - mesh
+Mesh "n" o- - Triangle3 : + triangles
+Triangle3 "3" o- - Point3 : + vertices
+Projectable <|.. Triangle3
+Projectable <|.. Point3
+@enduml
+
+PlantUML version 1.2022.2beta6(Unknown compile time)
+(GPL source distribution)
+Java Runtime: Java(TM) SE Runtime Environment
+JVM: Java HotSpot(TM) 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: US
+--></g></svg>
