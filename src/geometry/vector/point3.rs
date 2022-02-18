@@ -51,10 +51,11 @@ impl TryFrom<String> for Point3 {
 
 #[cfg(test)]
 mod test {
-	use crate::geometry::{MatrixBuilder, Point3};
+	use crate::geometry::Point3;
 	use crate::geometry::projectable::Projectable;
 	use crate::geometry::vector::Point2;
 	use crate::geometry::vector::point_parsing_error::PointParsingError;
+	use crate::math::builders::ProjectionMatrixBuilder;
 
 	#[test]
 	fn valid_parsing() {
@@ -75,7 +76,7 @@ mod test {
 	#[test]
 	fn get_projection() {
 		let point = Point3 { x: 1.0, y: 1.0, z: 0.0 };
-		let matrix = MatrixBuilder::new()
+		let matrix = ProjectionMatrixBuilder::new()
 			.set_height(1)
 			.set_width(1)
 			.set_fov(90.0)

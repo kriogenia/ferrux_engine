@@ -49,12 +49,13 @@ impl TryFrom<String> for Triangle3 {
 
 #[cfg(test)]
 mod tests {
-	use crate::geometry::{MatrixBuilder, Point3};
+	use crate::geometry::Point3;
 	use crate::geometry::projectable::Projectable;
 	use crate::geometry::triangle::{Triangle2, Triangle3};
 	use crate::geometry::triangle::triangle_parsing_error::TriangleParsingError;
 	use crate::geometry::vector::Point2;
 	use crate::geometry::vector::point_parsing_error::PointParsingError;
+	use crate::math::builders::ProjectionMatrixBuilder;
 
 	#[test]
 	fn valid_parsing() {
@@ -81,7 +82,7 @@ mod tests {
 			Point3 { x: -1.0, y: -1.0, z: 0.0 },
 			Point3 { x: 0.0, y: 0.5, z: 0.0 }
 			);
-		let matrix = MatrixBuilder::new()
+		let matrix = ProjectionMatrixBuilder::new()
 			.set_height(1)
 			.set_width(1)
 			.set_fov(90.0)

@@ -48,7 +48,7 @@ impl Actor for MeshActor {
 	fn update(&mut self, delta: u128) {
 		let matrix_x = RotationMatrixBuilder::new()
 			.in_axis(RotationAxis::X)
-			.with_speed(0.01)
+			.with_speed(0.02)
 			.with_theta(delta as f32 * 0.1)
 			.build();
 		let matrix_z = RotationMatrixBuilder::new()

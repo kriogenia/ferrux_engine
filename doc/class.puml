@@ -1,0 +1,95 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class EngineLoop {
+    event_loop: EventLoop
+
+    + new(): Self
+
+    + run(Rust3DEngine)
+}
+
+class Rust3DEngine {
+    - input: WinitInputHelper
+    - window: Window
+    - time: SystemTime
+
+    + new(title, width, height, EventLoop): Self
+
+    + draw()
+    + update(&Event)
+}
+
+class EngineCanvas {
+	- pixels: Pixels
+	width: usize
+	height: usize
+	z_offset: f32
+	projection_matrix: Matrix4
+
+	+ draw_line(start, end)
+	+ render()
+	+ resize(PhysicalSize)
+}
+
+enum Pixel {
+    BLACK
+    WHITE
+}
+
+class Environment {
+    + new() : Self
+
+    + draw(EngineCanvas)
+    + update(delta)
+}
+
+interface Drawable {
+    + draw(EngineCanvas)
+}
+
+interface Actor {
+    + update(delta)
+}
+
+interface Projectable {
+    + get_projection(Matrix4, width, height, z_offset)
+}
+
+class MeshActor {
+    + new(Mesh): Self
+}
+
+class Mesh {
+    + new(triangles): Self
+    + try_form(string): Self
+}
+
+class Triangle3 {
+    + new(triangles): Self
+    + try_form(string): Self
+
+    +rotate(Matrix4)
+}
+
+class Point3 {
+    + new(triangles): Self
+    + try_form(string): Self
+
+    + update(new_pos)
+}
+
+EngineLoop .. Rust3DEngine
+Rust3DEngine *-- EngineCanvas : -canvas
+Rust3DEngine *-- Environment : -environmment
+EngineCanvas "[width][height]" o-- Pixel : -canvas
+Drawable <|-- Actor
+Environment o-- Actor : -actors
+Actor <|.. MeshActor
+MeshActor <-- Mesh : - mesh
+Mesh "n" o-- Triangle3 : + triangles
+Triangle3 "3" o-- Point3 : + vertices
+Projectable <|.. Triangle3
+Projectable <|.. Point3
+
+@enduml

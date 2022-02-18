@@ -37,10 +37,14 @@ impl Rust3DEngine {
 	///
 	/// # Example
 	/// Create an [EngineLoop] and provided its event loop
-	/// ```
+	///
+	/// ```no_run
+	/// use rust_3d_engine::engine::EngineLoop;
+	/// use rust_3d_engine::engine::Rust3DEngine;
+	///
 	/// let engine_loop = EngineLoop::new();
-	///	let mut engine = Rust3DEngine::new("Rust 3D Engine".to_string(), 480, 960,
-	///                                   engine_loop.event_loop())?;
+	///	let mut engine = Rust3DEngine::new("Rust 3D Engine".to_string(), 480.0, 960.0,
+	///                                   engine_loop.event_loop()).unwrap();
 	/// ```
 	///
 	pub fn new(title: String, width: f64, height: f64, event_loop: &EventLoop<()>) -> Result<Self, Error> {
@@ -99,7 +103,6 @@ impl Rust3DEngine {
 				self.canvas.resize(size);
 			}
 		}
-
 
 		match self.time.elapsed() {
 			Ok(difference) => {

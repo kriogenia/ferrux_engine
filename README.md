@@ -8,7 +8,7 @@ Rust.
 
 ## Features
 
-* Rendering of 3D meshes - TBI
+* Rendering of 3D meshes
 * Configuration for screen sizes, FOV and view distance - TBI
 * Free movable camera - TBI
 
@@ -18,7 +18,26 @@ TBI
 
 ## Architecture
 
-TBI
+The basis of the program are the **EngineLoop** and the **Rust3DEngine**.
+The first is a loop to run the engine on a different thread and manage
+the different events. The Rust3DEngine on the other hand, contains all
+the main components of the engine.
+
+* First, the *Window* to render the engine and all the *inputs* to manage it.
+* Second, the **EngineCanvas**, an abstraction over the *Pixels* library to 
+manage the pixel buffer and with just basic drawing commands.
+* And last, the **Environment**, the class holding the components in the scene.
+It contains and manages all the actors that will be rendered.
+
+There are two main traits to build components to draw. The first one is
+**Drawable** to define structs capable of being drawn in the screen. And
+the other are the **Actor**, which are Drawable entities that can also be
+updated. An implementation of this one is the **MeshActor**, an actor with a Mesh.
+
+The **Mesh** defines a group of **Triangles** to draw. 
+Each triangle contains three different three-dimensional **Points**.
+Triangles and points implement **Projectable**, a trait for those
+entities that can be projected into a 2D space.
 
 ## Dependencies
 

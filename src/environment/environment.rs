@@ -21,13 +21,6 @@ impl Environment {
 		}
 	}
 
-	/// Procs an update of all the actors
-	pub fn update(&mut self, delta: u128) {
-		for actor in &mut self.actors {
-			actor.update(delta);
-		}
-	}
-
 	/// Draws the environment and actors in the given canvas
 	///
 	/// # Arguments
@@ -35,6 +28,13 @@ impl Environment {
 	pub fn draw(&self, canvas: &mut EngineCanvas) {
 		for actor in &self.actors {
 			actor.draw(canvas);
+		}
+	}
+
+	/// Procs an update of all the actors
+	pub fn update(&mut self, delta: u128) {
+		for actor in &mut self.actors {
+			actor.update(delta);
 		}
 	}
 

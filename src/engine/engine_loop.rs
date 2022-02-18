@@ -29,10 +29,14 @@ impl EngineLoop {
 	///
 	/// # Example
 	/// Create a [Rust3DEngine] with a [EngineLoop] and start its execution
-	/// ```
+	///
+	/// ```no_run
+	/// use rust_3d_engine::engine::EngineLoop;
+	/// use rust_3d_engine::engine::Rust3DEngine;
+	///
 	/// let engine_loop = EngineLoop::new();
-	///	let mut engine = Rust3DEngine::new("Rust 3D Engine".to_string(), 480, 960,
-	///                                   engine_loop.event_loop())?;
+	///	let mut engine = Rust3DEngine::new("Rust 3D Engine".to_string(), 480.0, 960.0,
+	///                                   engine_loop.event_loop()).unwrap();
 	/// engine_loop.run(engine);
 	/// ```
 	///
