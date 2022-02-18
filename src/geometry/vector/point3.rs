@@ -1,3 +1,4 @@
+use std::ops::Sub;
 use crate::geometry::projectable::Projectable;
 use crate::geometry::vector::point_parsing_error::PointParsingError;
 use crate::geometry::vector::Point2;
@@ -46,6 +47,18 @@ impl TryFrom<String> for Point3 {
         let z = parsed[2].parse::<f32>()?;
 
         Ok(Point3 { x, y, z })
+    }
+}
+
+impl Sub for Point3 {
+    type Output = Point3;
+
+    fn sub(self, rhs: Self) -> Self::Output {
+        Self {
+            x: self.x - rhs.x,
+            y: self.y - rhs.y,
+            z: self.z - rhs.z
+        }
     }
 }
 
@@ -107,4 +120,14 @@ mod test {
         assert!((result.x - expected.x).abs() < 0.001);
         assert!((result.y - expected.y).abs() < 0.001);
     }
+
+    #[test]
+    fn sub() {
+        let point_a = Point3 { x: 2.0, y: 0.0, z: -10.0, };
+        let point_b = Point3 { x: 1.0, y: 1.0, z: -11.0, };
+        let expected = Point3 { x: 1.0, y: -1.0, z: 1.0, };
+
+        assert_eq!(point_a - point_b, expected);
+    }
+
 }

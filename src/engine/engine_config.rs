@@ -6,6 +6,7 @@ const DEFAULT_SCREEN_POSITION: f32 = 0.1;
 const DEFAULT_VIEW_LIMIT: f32 = 1000.0;
 const DEFAULT_Z_OFFSET: f32 = 3.0;
 
+// TODO check invalid values
 pub struct EngineConfig {
     pub title: String,
     pub width: u32,
