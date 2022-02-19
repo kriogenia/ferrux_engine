@@ -1,4 +1,4 @@
-use std::ops::Sub;
+use std::ops::{Mul, Sub};
 use crate::geometry::projectable::Projectable;
 use crate::geometry::vector::point_parsing_error::PointParsingError;
 use crate::geometry::vector::Point2;
@@ -58,6 +58,18 @@ impl Sub for Point3 {
             x: self.x - rhs.x,
             y: self.y - rhs.y,
             z: self.z - rhs.z
+        }
+    }
+}
+
+impl Mul for Point3 {
+    type Output = Point3;
+
+    fn mul(self, rhs: Self) -> Self::Output {
+        Self {
+            x: self.y * rhs.z - self.z * rhs.y,
+            y: self.z * rhs.x - self.x * rhs.z,
+            z: self.x * rhs.y - self.y * rhs.x
         }
     }
 }
@@ -128,6 +140,15 @@ mod test {
         let expected = Point3 { x: 1.0, y: -1.0, z: 1.0, };
 
         assert_eq!(point_a - point_b, expected);
+    }
+
+    #[test]
+    fn mul() {
+        let point_a = Point3 { x: 2.0, y: 0.0, z: -10.0, };
+        let point_b = Point3 { x: 1.0, y: 1.0, z: -11.0, };
+        let expected = Point3 { x: 10.0, y: 12.0, z: 2.0, };
+
+        assert_eq!(point_a * point_b, expected);
     }
 
 }
