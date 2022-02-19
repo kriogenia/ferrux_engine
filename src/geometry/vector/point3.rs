@@ -1,5 +1,6 @@
-use std::ops::Sub;
+use std::ops::{Add, Sub};
 use crate::geometry::projectable::Projectable;
+use crate::geometry::vector::ops::{Cross, Dot, Module, Normalizable};
 use crate::geometry::vector::point_parsing_error::PointParsingError;
 use crate::geometry::vector::Point2;
 use crate::geometry::vector::vector::Vector;
@@ -60,6 +61,19 @@ impl TryFrom<String> for Point3 {
 	}
 }
 
+// Vector addition
+impl<'a> Add<&'a Point3> for &'a Point3 {
+	type Output = Point3;
+
+	fn add(self, rhs: &'a Point3) -> Self::Output {
+		Point3 {
+			x: self.x + rhs.x,
+			y: self.y + rhs.y,
+			z: self.z + rhs.z
+		}
+	}
+}
+
 // Vector subtraction
 impl<'a> Sub<&'a Point3> for &'a Point3 {
 	type Output = Point3;
@@ -73,27 +87,40 @@ impl<'a> Sub<&'a Point3> for &'a Point3 {
 	}
 }
 
-// Rest of vector operations
-impl<'a> Vector<&'a Point3> for &'a Point3 {
-	type SelfOutput = Point3;
+// Vector dot-product
+impl<'a> Dot<&'a Point3> for &'a Point3 {
+	type Output = Point3;
 
-	fn cross(self, rhs: &'a Point3) -> Self::SelfOutput {
+	fn dot(self, _: &'a Point3) -> Self::Output {
+		todo!()
+	}
+}
+
+// Vector cross-product
+impl<'a> Cross<&'a Point3> for &'a Point3 {
+	type Output = Point3;
+
+	fn cross(self, rhs: &'a Point3) -> Self::Output {
 		Point3 {
 			x: self.y * rhs.z - self.z * rhs.y,
 			y: self.z * rhs.x - self.x * rhs.z,
 			z: self.x * rhs.y - self.y * rhs.x
 		}
 	}
+}
 
-	fn dot(self) -> Self::SelfOutput {
-		todo!()
-	}
-
+// Vector module
+impl<'a> Module for &'a Point3 {
 	fn module(self) -> f32 {
 		(self.x * self.x + self.y * self.y + self.z * self.z).sqrt()
 	}
+}
 
-	fn normalized(self) -> Self::SelfOutput {
+// Vector normal
+impl<'a> Normalizable<&'a Point3> for &'a Point3 {
+	type Output = Point3;
+
+	fn normal(self) -> Self::Output {
 		let module = self.module();
 		Point3 {
 			x: self.x / module,
@@ -103,11 +130,14 @@ impl<'a> Vector<&'a Point3> for &'a Point3 {
 	}
 }
 
+impl<'a> Vector<&'a Point3> for &'a Point3 {}
+
 #[cfg(test)]
 mod test {
 	use crate::geometry::projectable::Projectable;
 	use crate::geometry::vector::point_parsing_error::PointParsingError;
-	use crate::geometry::vector::{Point2, Point3, Vector};
+	use crate::geometry::vector::{Point2, Point3};
+	use crate::geometry::vector::ops::*;
 	use crate::math::builders::ProjectionMatrixBuilder;
 
 	#[test]
@@ -146,10 +176,10 @@ mod test {
 	}
 
 	#[test]
-	fn normalize() {
+	fn normal() {
 		let point = Point3 { x: 0.0, y: 3.0, z: 4.0 };
 		let expected = Point3 { x: 0.0, y: 0.6, z: 0.8 };
-		assert_eq!(point.normalized(), expected);
+		assert_eq!(point.normal(), expected);
 	}
 
 	#[test]
@@ -172,6 +202,15 @@ mod test {
 		let expected = Point2 { x: 240.0, y: 480.0 };
 		assert!((result.x - expected.x).abs() < 0.001);
 		assert!((result.y - expected.y).abs() < 0.001);
+	}
+
+	#[test]
+	fn add() {
+		let point_a = Point3 { x: 2.0, y: 0.0, z: -10.0, };
+		let point_b = Point3 { x: 1.0, y: 1.0, z: -11.0, };
+		let expected = Point3 { x: 3.0, y: 1.0, z: -21.0, };
+
+		assert_eq!(&point_a + &point_b, expected);
 	}
 
 	#[test]

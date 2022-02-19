@@ -13,3 +13,9 @@ logic, and the Z-normal check extract it a wrapper of it.
 This way, on bootstrap time we could generate the actors with the desired 
 drawing strategy evading constant condition checks.
 
+## Publish as library
+Right now, excepting the mesh load, the library works perfectly without
+the main function, so it could be published as a library.
+I'm currently considering publishing it in crates.io as a way of learning
+to do it.
+

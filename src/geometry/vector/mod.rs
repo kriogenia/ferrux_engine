@@ -6,3 +6,4 @@ mod point2;
 mod point3;
 pub mod point_parsing_error;
 mod vector;
+pub(crate) mod ops;

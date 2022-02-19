@@ -1,7 +1,8 @@
 use crate::geometry::triangle::triangle_parsing_error::TriangleParsingError;
 use crate::geometry::triangle::Triangle2;
 use crate::geometry::Projectable;
-use crate::geometry::vector::{Point3, Vector};
+use crate::geometry::vector::Point3;
+use crate::geometry::vector::ops::{Cross, Normalizable};
 use crate::math::{vector_dot_matrix, Matrix4};
 
 /// Three-dimensional triangle composed with three [Point3]
@@ -28,7 +29,7 @@ impl Triangle3 {
     pub fn normal(&self) -> Point3 {
         let line_0_1 = &self.1 - &self.0;
         let line_0_2 = &self.2 - &self.0;
-        (&line_0_1).cross(&line_0_2).normalized()
+        (&line_0_1).cross(&line_0_2).normal()
     }
 }
 
