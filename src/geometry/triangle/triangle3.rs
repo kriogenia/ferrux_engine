@@ -8,6 +8,7 @@ use crate::math::{vector_dot_matrix, Matrix4};
 pub struct Triangle3(pub Point3, pub Point3, pub Point3);
 
 impl Triangle3 {
+
     /// Applies a rotation to the triangle
     ///
     /// # Arguments
@@ -15,11 +16,11 @@ impl Triangle3 {
     ///
     pub fn rotate(&mut self, matrix: &Matrix4) {
         self.0
-            .update(vector_dot_matrix((self.0.x, self.0.y, self.0.z), &matrix));
+            .translate(vector_dot_matrix((self.0.x, self.0.y, self.0.z), &matrix));
         self.1
-            .update(vector_dot_matrix((self.1.x, self.1.y, self.1.z), &matrix));
+            .translate(vector_dot_matrix((self.1.x, self.1.y, self.1.z), &matrix));
         self.2
-            .update(vector_dot_matrix((self.2.x, self.2.y, self.2.z), &matrix));
+            .translate(vector_dot_matrix((self.2.x, self.2.y, self.2.z), &matrix));
     }
 
     /// Returns the normal vector of the triangle
@@ -173,8 +174,6 @@ mod tests {
             Point2 { x: 0.0, y: 0.0 },
             Point2 { x: 120.0, y: 360.0 },
         );
-
-        dbg!(&result);
 
         assert!((result.0.x - expected.0.x).abs() < 0.001);
         assert!((result.0.y - expected.0.y).abs() < 0.001);

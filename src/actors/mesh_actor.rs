@@ -28,21 +28,11 @@ impl Drawable for MeshActor {
         let height = canvas.height() as f32;
 
         for triangle in &self.mesh.triangles {
-            let projection =
-                triangle.get_projection(canvas.projection_matrix(), offset, width, height);
-
-            canvas.draw_line(
-                (projection.0.x as isize, projection.0.y as isize),
-                (projection.1.x as isize, projection.1.y as isize),
-            );
-            canvas.draw_line(
-                (projection.1.x as isize, projection.1.y as isize),
-                (projection.2.x as isize, projection.2.y as isize),
-            );
-            canvas.draw_line(
-                (projection.2.x as isize, projection.2.y as isize),
-                (projection.0.x as isize, projection.0.y as isize),
-            );
+            if triangle.normal().z < 0.0 {
+                let projection = triangle.get_projection(canvas.projection_matrix(),
+                                                         offset, width, height);
+                canvas.draw_triangle(projection);
+            }
         }
     }
 }

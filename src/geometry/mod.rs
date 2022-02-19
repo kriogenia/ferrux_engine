@@ -5,5 +5,5 @@ pub use vector::Point3;
 mod geometry_error;
 mod mesh;
 mod projectable;
-mod triangle;
+pub mod triangle;
 mod vector;

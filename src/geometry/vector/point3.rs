@@ -33,7 +33,7 @@ impl Point3 {
 		self
 	}
 
-	pub fn update(&mut self, new_pos: (f32, f32, f32)) {
+	pub fn translate(&mut self, new_pos: (f32, f32, f32)) {
 		self.x = new_pos.0;
 		self.y = new_pos.1;
 		self.z = new_pos.2;

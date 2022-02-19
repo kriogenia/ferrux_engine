@@ -6,6 +6,7 @@ use log::{error, info};
 use pixels::{Pixels, SurfaceTexture};
 use winit::dpi::PhysicalSize;
 use winit::window::Window;
+use crate::geometry::triangle::Triangle2;
 
 /// Canvas to manage what is drawn in the screen
 pub struct EngineCanvas {
@@ -94,6 +95,26 @@ impl EngineCanvas {
         for (x, y) in Bresenham::new(start, end) {
             self.push_pixel(x as usize, y as usize);
         }
+    }
+
+    /// Draws the three lines compounding a triangle in the canvas
+    ///
+    /// # Arguments
+    /// `triangle` - 2D Triangle to draw
+    ///
+    pub fn draw_triangle(&mut self, triangle: Triangle2) {
+        self.draw_line(
+            (triangle.0.x as isize, triangle.0.y as isize),
+            (triangle.1.x as isize, triangle.1.y as isize),
+        );
+        self.draw_line(
+            (triangle.1.x as isize, triangle.1.y as isize),
+            (triangle.2.x as isize, triangle.2.y as isize),
+        );
+        self.draw_line(
+            (triangle.2.x as isize, triangle.2.y as isize),
+            (triangle.0.x as isize, triangle.0.y as isize),
+        );
     }
 
     /// Renders the current canvas in the screen and clears it
