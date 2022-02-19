@@ -1,7 +1,8 @@
-use std::ops::{Mul, Sub};
+use std::ops::Sub;
 use crate::geometry::projectable::Projectable;
 use crate::geometry::vector::point_parsing_error::PointParsingError;
 use crate::geometry::vector::Point2;
+use crate::geometry::vector::vector::Vector;
 use crate::math::vector_dot_matrix;
 use crate::math::Matrix4;
 
@@ -19,27 +20,20 @@ pub struct Point3 {
 
 impl Point3 {
 
-	/// Returns the length module of the vector
-	pub fn module(&self) -> f32 {
-		(self.x * self.x + self.y * self.y + self.z * self.z).sqrt()
-	}
-
-	/// Normalizes the vector
-	pub fn normalize(mut self) -> Self {
-		let module = self.module();
-		self.x /= module;
-		self.y /= module;
-		self.z /= module;
-		self
-	}
-
+	/// Moves the point to the given position
+	///
+	/// # Arguments
+	/// * `new_pos` - New position like (x, y, z)
+	///
 	pub fn translate(&mut self, new_pos: (f32, f32, f32)) {
 		self.x = new_pos.0;
 		self.y = new_pos.1;
 		self.z = new_pos.2;
 	}
+
 }
 
+// To generate 2D projected version of the point
 impl Projectable<Point2> for Point3 {
 	fn get_projection(&self, matrix: &Matrix4, offset: f32, width: f32, height: f32) -> Point2 {
 		let (x, y, _) = vector_dot_matrix((self.x, self.y, self.z + offset), matrix);
@@ -47,6 +41,7 @@ impl Projectable<Point2> for Point3 {
 	}
 }
 
+// Parsing of the point from a string
 impl TryFrom<String> for Point3 {
 	type Error = PointParsingError;
 
@@ -65,6 +60,7 @@ impl TryFrom<String> for Point3 {
 	}
 }
 
+// Vector subtraction
 impl<'a> Sub<&'a Point3> for &'a Point3 {
 	type Output = Point3;
 
@@ -77,14 +73,32 @@ impl<'a> Sub<&'a Point3> for &'a Point3 {
 	}
 }
 
-impl<'a> Mul<&'a Point3> for &'a Point3 {
-	type Output = Point3;
+// Rest of vector operations
+impl<'a> Vector<&'a Point3> for &'a Point3 {
+	type SelfOutput = Point3;
 
-	fn mul(self, rhs: &'a Point3) -> Self::Output {
+	fn cross(self, rhs: &'a Point3) -> Self::SelfOutput {
 		Point3 {
 			x: self.y * rhs.z - self.z * rhs.y,
 			y: self.z * rhs.x - self.x * rhs.z,
 			z: self.x * rhs.y - self.y * rhs.x
+		}
+	}
+
+	fn dot(self) -> Self::SelfOutput {
+		todo!()
+	}
+
+	fn module(self) -> f32 {
+		(self.x * self.x + self.y * self.y + self.z * self.z).sqrt()
+	}
+
+	fn normalized(self) -> Self::SelfOutput {
+		let module = self.module();
+		Point3 {
+			x: self.x / module,
+			y: self.y / module,
+			z: self.z / module
 		}
 	}
 }
@@ -93,8 +107,7 @@ impl<'a> Mul<&'a Point3> for &'a Point3 {
 mod test {
 	use crate::geometry::projectable::Projectable;
 	use crate::geometry::vector::point_parsing_error::PointParsingError;
-	use crate::geometry::vector::Point2;
-	use crate::geometry::Point3;
+	use crate::geometry::vector::{Point2, Point3, Vector};
 	use crate::math::builders::ProjectionMatrixBuilder;
 
 	#[test]
@@ -136,7 +149,7 @@ mod test {
 	fn normalize() {
 		let point = Point3 { x: 0.0, y: 3.0, z: 4.0 };
 		let expected = Point3 { x: 0.0, y: 0.6, z: 0.8 };
-		assert_eq!(point.normalize(), expected);
+		assert_eq!(point.normalized(), expected);
 	}
 
 	#[test]
@@ -171,12 +184,12 @@ mod test {
 	}
 
 	#[test]
-	fn mul() {
+	fn cross() {
 		let point_a = Point3 { x: 2.0, y: 0.0, z: -10.0, };
 		let point_b = Point3 { x: 1.0, y: 1.0, z: -11.0, };
 		let expected = Point3 { x: 10.0, y: 12.0, z: 2.0, };
 
-		assert_eq!(&point_a * &point_b, expected);
+		assert_eq!(&point_a.cross(&point_b), &expected);
 	}
 
 }

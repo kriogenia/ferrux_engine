@@ -1,6 +1,7 @@
 use crate::geometry::triangle::triangle_parsing_error::TriangleParsingError;
 use crate::geometry::triangle::Triangle2;
-use crate::geometry::{Point3, Projectable};
+use crate::geometry::Projectable;
+use crate::geometry::vector::{Point3, Vector};
 use crate::math::{vector_dot_matrix, Matrix4};
 
 /// Three-dimensional triangle composed with three [Point3]
@@ -25,7 +26,9 @@ impl Triangle3 {
 
     /// Returns the normal vector of the triangle
     pub fn normal(&self) -> Point3 {
-        &(&self.1 - &self.0) * &(&self.2 - &self.0).normalize()
+        let line_0_1 = &self.1 - &self.0;
+        let line_0_2 = &self.2 - &self.0;
+        (&line_0_1).cross(&line_0_2).normalized()
     }
 }
 
@@ -63,8 +66,7 @@ mod tests {
     use crate::geometry::triangle::triangle_parsing_error::TriangleParsingError;
     use crate::geometry::triangle::{Triangle2, Triangle3};
     use crate::geometry::vector::point_parsing_error::PointParsingError;
-    use crate::geometry::vector::Point2;
-    use crate::geometry::Point3;
+    use crate::geometry::vector::{Point2, Point3};
     use crate::math::builders::ProjectionMatrixBuilder;
 
     #[test]
@@ -131,9 +133,9 @@ mod tests {
                 z: 3.0,
             },
         );
-        let expected = Point3 { x: 1.07, y: -2.14, z: 1.07 };
+        let expected = Point3 { x: 0.41, y: -0.82, z: 0.41 };
         let normal = triangle.normal();
-
+        println!("{:?}", &normal);
         assert!((normal.x - expected.x).abs() < 0.01);
         assert!((normal.y - expected.y).abs() < 0.01);
         assert!((normal.z - expected.z).abs() < 0.01);
