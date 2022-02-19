@@ -8,6 +8,11 @@ use crate::math::{vector_dot_matrix, Matrix4};
 pub struct Triangle3(pub Point3, pub Point3, pub Point3);
 
 impl Triangle3 {
+    /// Applies a rotation to the triangle
+    ///
+    /// # Arguments
+    /// * `matrix` - Rotation matrix to perform the action
+    ///
     pub fn rotate(&mut self, matrix: &Matrix4) {
         self.0
             .update(vector_dot_matrix((self.0.x, self.0.y, self.0.z), &matrix));
@@ -15,6 +20,11 @@ impl Triangle3 {
             .update(vector_dot_matrix((self.1.x, self.1.y, self.1.z), &matrix));
         self.2
             .update(vector_dot_matrix((self.2.x, self.2.y, self.2.z), &matrix));
+    }
+
+    /// Returns the normal vector of the triangle
+    pub fn normal(&self) -> Point3 {
+        &(&self.1 - &self.0) * &(&self.2 - &self.0).normalize()
     }
 }
 
@@ -100,6 +110,34 @@ mod tests {
             TriangleParsingError::InvalidPoint(PointParsingError::InvalidFloat)
         );
     }
+
+    #[test]
+    fn normal() {
+        let triangle = Triangle3(
+            Point3 {
+                x: 0.0,
+                y: 0.0,
+                z: 0.0,
+            },
+            Point3 {
+                x: 3.0,
+                y: 2.0,
+                z: 1.0,
+            },
+            Point3 {
+                x: 1.0,
+                y: 2.0,
+                z: 3.0,
+            },
+        );
+        let expected = Point3 { x: 1.07, y: -2.14, z: 1.07 };
+        let normal = triangle.normal();
+
+        assert!((normal.x - expected.x).abs() < 0.01);
+        assert!((normal.y - expected.y).abs() < 0.01);
+        assert!((normal.z - expected.z).abs() < 0.01);
+    }
+
 
     #[test]
     fn projection() {
