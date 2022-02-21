@@ -1,5 +1,5 @@
 use crate::engine::engine_error::EngineError;
-use crate::engine::{EngineCanvas, EngineConfig};
+use crate::engine::{EngineRenderer, EngineConfig};
 use crate::environment::Environment;
 use log::{error, info};
 use std::time::SystemTime;
@@ -16,7 +16,7 @@ type Error = EngineError;
 pub struct Rust3DEngine {
     input: WinitInputHelper,
     window: Window,
-    canvas: EngineCanvas,
+    canvas: EngineRenderer,
     environment: Environment,
     time: SystemTime,
 }
@@ -57,7 +57,7 @@ impl Rust3DEngine {
                 .unwrap()
         };
 
-        let canvas = EngineCanvas::new(&window, config)?;
+        let canvas = EngineRenderer::new(&window, config)?;
 
         Ok(Self {
             input: WinitInputHelper::new(),

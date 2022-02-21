@@ -74,14 +74,39 @@ class Triangle3 {
     + rotate(&self, Matrix4)
 }
 
-interface "Vector<T>" as vector {
-    + SelfOutput: type
+() Add
+() Sub
 
-    + cross(self, T): SelfOutput
-    + dot(self, T): SelfOutput
-    + module(self): f32
-    + normalized(self): T
+interface Cross<T> {
+    + Output: type
+
+    + cross(self, T): Output
 }
+
+interface Dot<T> {
+    + Output: type
+
+    + dot(self, T): Output
+}
+
+interface Module {
+    + module(self): f32
+}
+
+interface Normalizable<T: Module> {
+    + Output: type
+
+    + normal(self): Output
+}
+
+Module <|.. Normalizable
+
+interface Vector<T>
+
+Add <|-- Vector
+Dot <|-- Vector
+Normalizable <|-- Vector
+Sub <|-- Vector
 
 class Point3 {
     + new(triangles): Self
@@ -90,8 +115,8 @@ class Point3 {
     + translate(new_pos)
 }
 
-() Add
-() Sub
+Vector <|.. Point3
+Cross <|.. Point3
 
 EngineLoop .. Rust3DEngine
 Rust3DEngine *-- EngineCanvas : -canvas
@@ -105,8 +130,5 @@ Mesh "n" o-- Triangle3 : + triangles
 Triangle3 "3" o-- Point3 : + vertices
 Projectable <|.. Triangle3
 Projectable <|.. Point3
-Add <|.. vector
-Sub <|.. vector
-vector <|.. Point3
 
 @enduml

@@ -1,6 +1,6 @@
 use crate::actors::actor::Drawable;
 use crate::actors::Actor;
-use crate::engine::EngineCanvas;
+use crate::engine::EngineRenderer;
 use crate::geometry::Mesh;
 use crate::geometry::Projectable;
 use crate::math::builders::{RotationAxis, RotationMatrixBuilder};
@@ -22,7 +22,7 @@ impl MeshActor {
 }
 
 impl Drawable for MeshActor {
-    fn draw(&self, canvas: &mut EngineCanvas) {
+    fn draw(&self, canvas: &mut EngineRenderer) {
         let offset = canvas.offset();
         let width = canvas.width() as f32;
         let height = canvas.height() as f32;

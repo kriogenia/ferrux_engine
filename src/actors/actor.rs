@@ -1,4 +1,4 @@
-use crate::engine::EngineCanvas;
+use crate::engine::EngineRenderer;
 
 /// Entities than can be drawn in the canvas
 pub trait Drawable {
@@ -6,7 +6,7 @@ pub trait Drawable {
     ///
     /// # Arguments
     /// * `canvas` - Canvas to draw the Drawable
-    fn draw(&self, canvas: &mut EngineCanvas);
+    fn draw(&self, canvas: &mut EngineRenderer);
 }
 
 /// Updatable entities
