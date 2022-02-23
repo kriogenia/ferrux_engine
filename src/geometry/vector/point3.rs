@@ -89,10 +89,10 @@ impl<'a> Sub<&'a Point3> for &'a Point3 {
 
 // Vector dot-product
 impl<'a> Dot<&'a Point3> for &'a Point3 {
-	type Output = Point3;
+	type Output = f32;
 
-	fn dot(self, _: &'a Point3) -> Self::Output {
-		todo!()
+	fn dot(self, rhs: &'a Point3) -> Self::Output {
+		self.x * rhs.x + self.y * rhs.y + self.z * rhs.z
 	}
 }
 
@@ -229,6 +229,14 @@ mod test {
 		let expected = Point3 { x: 10.0, y: 12.0, z: 2.0, };
 
 		assert_eq!(&point_a.cross(&point_b), &expected);
+	}
+
+	#[test]
+	fn dot() {
+		let point_a = Point3 { x: 2.0, y: 0.0, z: -10.0, };
+		let point_b = Point3 { x: 1.0, y: 1.0, z: -1.0, };
+
+		assert_eq!(12.0, point_a.dot(&point_b));
 	}
 
 }
