@@ -1,6 +1,7 @@
+use ferrux_canvas::canvas::Canvas;
 use crate::actors::actor::Drawable;
 use crate::actors::Actor;
-use crate::engine::EngineRenderer;
+use crate::engine::EngineCamera;
 use crate::geometry::Mesh;
 use crate::geometry::Projectable;
 use crate::math::builders::{RotationAxis, RotationMatrixBuilder};
@@ -22,16 +23,18 @@ impl MeshActor {
 }
 
 impl Drawable for MeshActor {
-    fn draw(&self, canvas: &mut EngineRenderer) {
-        let offset = canvas.offset();
+    fn draw(&self, canvas: &mut dyn Canvas, camera: &EngineCamera) {
+        let offset = camera.offset();
         let width = canvas.width() as f32;
         let height = canvas.height() as f32;
 
         for triangle in &self.mesh.triangles {
             if triangle.normal().z < 0.0 {
-                let projection = triangle.get_projection(canvas.projection_matrix(),
+                let projection = triangle.get_projection(camera.projection_matrix(),
                                                          offset, width, height);
-                canvas.draw_triangle(projection);
+                canvas.draw_triangle((projection.0.x as u32, projection.0.y as u32),
+                                     (projection.1.x as u32, projection.1.y as u32),
+                                     (projection.2.x as u32, projection.2.y as u32));
             }
         }
     }

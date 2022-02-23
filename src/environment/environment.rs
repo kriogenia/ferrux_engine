@@ -1,7 +1,8 @@
+use ferrux_canvas::canvas::Canvas;
 use crate::actors::examples::get_3d_cube;
 use crate::actors::Actor;
-use crate::engine::EngineRenderer;
 use log::info;
+use crate::engine::EngineCamera;
 
 /// Represents the environment that is drawn in the screen. It holds all the actors to draw.
 pub struct Environment {
@@ -24,9 +25,9 @@ impl Environment {
     ///
     /// # Arguments
     /// * `canvas` - [EngineCanvas] to draw the actors on
-    pub fn draw(&self, canvas: &mut EngineRenderer) {
+    pub fn draw(&self, canvas: &mut dyn Canvas, camera: &EngineCamera) {
         for actor in &self.actors {
-            actor.draw(canvas);
+            actor.draw(canvas, camera);
         }
     }
 
