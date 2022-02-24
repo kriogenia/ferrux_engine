@@ -5,6 +5,7 @@ use crate::engine::EngineCamera;
 use crate::geometry::Mesh;
 use crate::geometry::Projectable;
 use crate::math::builders::{RotationAxis, RotationMatrixBuilder};
+use crate::geometry::vector::ops::Dot;
 
 /// Implementation of an actor with a mesh
 pub struct MeshActor {
@@ -29,7 +30,8 @@ impl Drawable for MeshActor {
         let height = canvas.height() as f32;
 
         for triangle in &self.mesh.triangles {
-            if triangle.normal().z < 0.0 {
+            let plain = triangle.plain_component().apply_offset(offset);
+            if triangle.normal().dot(&(&plain - camera.position())) < 0.0 {
                 let projection = triangle.get_projection(camera.projection_matrix(),
                                                          offset, width, height);
                 canvas.draw_triangle((projection.0.x as u32, projection.0.y as u32),

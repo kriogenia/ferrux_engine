@@ -31,6 +31,12 @@ impl Triangle3 {
         let line_0_2 = &self.2 - &self.0;
         (&line_0_1).cross(&line_0_2).normal()
     }
+
+    /// Returns a vector of the same plane as the triangle
+    pub fn plain_component(&self) -> Point3 {
+        self.0.clone()
+    }
+
 }
 
 impl Projectable<Triangle2> for Triangle3 {

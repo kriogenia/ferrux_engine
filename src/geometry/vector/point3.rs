@@ -32,6 +32,16 @@ impl Point3 {
 		self.z = new_pos.2;
 	}
 
+	/// Applies the offset to the point
+	///
+	/// # Arguments
+	/// * `offset` - Offset to apply
+	///
+	pub fn apply_offset(mut self, offset: f32) -> Self {
+		self.z += offset;
+		self
+	}
+
 }
 
 // To generate 2D projected version of the point
@@ -131,6 +141,16 @@ impl<'a> Normalizable<&'a Point3> for &'a Point3 {
 }
 
 impl<'a> Vector<&'a Point3> for &'a Point3 {}
+
+impl Clone for Point3 {
+	fn clone(&self) -> Self {
+		Self {
+			x: self.x,
+			y: self.y,
+			z: self.z
+		}
+	}
+}
 
 #[cfg(test)]
 mod test {
