@@ -1,10 +1,10 @@
-use rust_3d_engine::engine::{EngineConfig, EngineError, EngineLoop, Rust3DEngine};
+use ferrux_engine::engine::{EngineConfig, EngineError, EngineLoop, Rust3DEngine};
 
 fn main() -> Result<(), EngineError> {
     env_logger::init();
 
     let config = EngineConfig::default()
-        .set_title("rust_3d_engine".to_string())
+        .set_title("Ferruxe Engine".to_string())
         .set_width(960)
         .set_height(960)
         .set_fov(90.0)

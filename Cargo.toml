@@ -1,5 +1,5 @@
 [package]
-name = "rust-3d-engine"
+name = "ferrux_engine"
 version = "0.1.0"
 authors = ["Soto Estévez <ricardo@sotoestevez.dev>"]
 edition = "2021"
