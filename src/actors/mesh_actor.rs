@@ -1,4 +1,5 @@
 use ferrux_canvas::canvas::Canvas;
+use ferrux_canvas::color::palette;
 use crate::actors::actor::Drawable;
 use crate::actors::Actor;
 use crate::engine::EngineCamera;
@@ -34,9 +35,11 @@ impl Drawable for MeshActor {
             if triangle.normal().dot(&(&plain - camera.position())) < 0.0 {
                 let projection = triangle.get_projection(camera.projection_matrix(),
                                                          offset, width, height);
-                canvas.draw_triangle((projection.0.x as u32, projection.0.y as u32),
+
+                canvas.fill_triangle((projection.0.x as u32, projection.0.y as u32),
                                      (projection.1.x as u32, projection.1.y as u32),
-                                     (projection.2.x as u32, projection.2.y as u32));
+                                     (projection.2.x as u32, projection.2.y as u32),
+                palette::WHITE);
             }
         }
     }
@@ -46,12 +49,12 @@ impl Actor for MeshActor {
     fn update(&mut self, delta: u128) {
         let matrix_x = RotationMatrixBuilder::new()
             .in_axis(RotationAxis::X)
-            .with_speed(0.02)
+            .with_speed(0.005)
             .with_theta(delta as f32 * 0.1)
             .build();
         let matrix_z = RotationMatrixBuilder::new()
             .in_axis(RotationAxis::Z)
-            .with_speed(-0.02)
+            .with_speed(-0.0025)
             .with_theta(delta as f32 * 0.1)
             .build();
 

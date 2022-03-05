@@ -5,8 +5,8 @@ fn main() -> Result<(), EngineError> {
 
     let config = EngineConfig::default()
         .set_title("rust_3d_engine".to_string())
-        .set_width(1240)
-        .set_height(720)
+        .set_width(960)
+        .set_height(960)
         .set_fov(90.0)
         .set_z_offset(5.0);
 
