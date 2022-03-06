@@ -7,6 +7,7 @@ pub struct EngineCamera {
 	position: Point3,
 	projection_matrix: Matrix4,
 	z_offset: f32,
+	light: Point3
 }
 
 impl EngineCamera {
@@ -23,6 +24,7 @@ impl EngineCamera {
 			position: Point3 { x: 0.0, y: 0.0, z: 0.0},
 			projection_matrix,
 			z_offset: config.z_offset,
+			light: config.light_direction,
 		}
 	}
 
@@ -39,6 +41,11 @@ impl EngineCamera {
 	/// Returns the projection matrix of the current rendering
 	pub fn projection_matrix(&self) -> &Matrix4 {
 		&self.projection_matrix
+	}
+
+	/// Returns the light vector
+	pub fn light(&self) -> &Point3 {
+		&self.light
 	}
 
 }

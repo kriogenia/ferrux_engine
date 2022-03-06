@@ -1,3 +1,5 @@
+use crate::geometry::vector::Point3;
+
 const DEFAULT_TITLE: &str = "Rust 3D Engine";
 const DEFAULT_WIDTH: u32 = 960;
 const DEFAULT_HEIGHT: u32 = 640;
@@ -5,6 +7,7 @@ const DEFAULT_FOV: f32 = 90.0;
 const DEFAULT_SCREEN_POSITION: f32 = 0.1;
 const DEFAULT_VIEW_LIMIT: f32 = 1000.0;
 const DEFAULT_Z_OFFSET: f32 = 3.0;
+const DEFAULT_LIGHT: Point3 = Point3 { x: 0.0, y: 0.0, z: -1.0 };
 
 // TODO check invalid values
 /// Entity holding all the configurable options of the engine
@@ -16,6 +19,7 @@ pub struct EngineConfig {
     pub screen_position: f32,
     pub view_limit: f32,
     pub z_offset: f32,
+    pub light_direction: Point3
 }
 
 impl EngineConfig {
@@ -61,6 +65,12 @@ impl EngineConfig {
         self.z_offset = z_offset;
         self
     }
+
+    /// Set the direction of the global ilumination
+    pub fn set_light_direction(mut self, light_direction: Point3) -> Self {
+        self.light_direction = light_direction;
+        self
+    }
 }
 
 impl Default for EngineConfig {
@@ -73,6 +83,7 @@ impl Default for EngineConfig {
             screen_position: DEFAULT_SCREEN_POSITION,
             view_limit: DEFAULT_VIEW_LIMIT,
             z_offset: DEFAULT_Z_OFFSET,
+            light_direction: DEFAULT_LIGHT,
         }
     }
 }
