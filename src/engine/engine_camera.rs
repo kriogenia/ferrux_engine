@@ -11,7 +11,7 @@ pub struct EngineCamera {
 }
 
 impl EngineCamera {
-	pub fn new(config: EngineConfig) -> Self {
+	pub fn new(config: &EngineConfig) -> Self {
 		let projection_matrix = ProjectionMatrixBuilder::new()
 			.set_screen_position(config.screen_position)
 			.set_view_limit(config.view_limit)
@@ -24,7 +24,7 @@ impl EngineCamera {
 			position: Point3 { x: 0.0, y: 0.0, z: 0.0},
 			projection_matrix,
 			z_offset: config.z_offset,
-			light: config.light_direction,
+			light: config.light_direction.clone(),
 		}
 	}
 

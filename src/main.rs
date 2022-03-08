@@ -1,6 +1,6 @@
 use ferrux_engine::engine::{EngineConfig, EngineError, EngineLoop, Rust3DEngine};
 
-fn main() -> Result<(), EngineError> {
+fn main() -> Result<(), EngineError<'static>> {
     env_logger::init();
 
     let config = EngineConfig::default()

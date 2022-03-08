@@ -12,7 +12,7 @@ use winit::window::{Window, WindowBuilder};
 use winit_input_helper::WinitInputHelper;
 use crate::engine::engine_camera::EngineCamera;
 
-type Error = EngineError;
+type Error<'a> = EngineError<'a>;
 
 /// Graphics engine. It holds the displayed window, the canvas to print in the window and the
 /// environment with the meshes to display.
@@ -47,7 +47,7 @@ impl Rust3DEngine {
     /// let mut engine = Rust3DEngine::new(engine_loop.event_loop(), EngineConfig::default()).unwrap();
     /// ```
     ///
-    pub fn new(event_loop: &EventLoop<()>, config: EngineConfig) -> Result<Self, Error> {
+    pub fn new<'a>(event_loop: &EventLoop<()>, config: EngineConfig<'a>) -> Result<Self, Error<'a>> {
         info!("Building window");
         let window = {
             let size = LogicalSize::new(config.width, config.height);
@@ -64,12 +64,14 @@ impl Rust3DEngine {
             EngineError::AdapterNotFound
         })?;
 
+        let environment = Environment::new(&config.file)?;
+
         Ok(Self {
             input: WinitInputHelper::new(),
             window,
             canvas,
-            camera: EngineCamera::new(config),
-            environment: Environment::new(),
+            camera: EngineCamera::new(&config),
+            environment,
             time: SystemTime::now(),
         })
     }

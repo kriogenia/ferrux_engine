@@ -1,8 +1,10 @@
+use std::fs;
 use ferrux_canvas::canvas::Canvas;
 use crate::actors::examples::get_3d_cube;
 use crate::actors::Actor;
-use log::info;
+use log::{error, info};
 use crate::engine::EngineCamera;
+use crate::environment::error::EnvironmentError;
 
 /// Represents the environment that is drawn in the screen. It holds all the actors to draw.
 pub struct Environment {
@@ -11,14 +13,19 @@ pub struct Environment {
 
 impl Environment {
     /// Returns a new instance of the environment
-    pub fn new() -> Self {
+    pub(crate) fn new(file: &str) -> Result<Self, EnvironmentError> {
         info!("Creating environment");
-        //let tri1 = Triangle2D::new();
         let cube1 = get_3d_cube();
 
-        Environment {
-            actors: vec![/*Box::new(tri1), */ Box::new(cube1)],
-        }
+        let _ = fs::read_to_string(file)
+          .map_err(|e| {
+              error!("{}", e);
+              EnvironmentError::BadFile(file)
+          })?;
+
+        Ok(Environment {
+            actors: vec![Box::new(cube1)],
+        })
     }
 
     /// Draws the environment and actors in the given canvas
