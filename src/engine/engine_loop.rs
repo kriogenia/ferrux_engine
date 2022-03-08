@@ -30,8 +30,8 @@ impl EngineLoop {
     /// Create a [Rust3DEngine] with a [EngineLoop] and start its execution
     ///
     /// ```no_run
-    /// use rust_3d_engine::engine::{EngineConfig, EngineLoop};
-    /// use rust_3d_engine::engine::Rust3DEngine;
+    /// use ferrux_engine::engine::{EngineConfig, EngineLoop};
+    /// use ferrux_engine::engine::Rust3DEngine;
     ///
     /// let engine_loop = EngineLoop::new();
     ///  let mut engine = Rust3DEngine::new(engine_loop.event_loop(), EngineConfig::default()).unwrap();

@@ -1,12 +1,12 @@
 use ferrux_canvas::canvas::Canvas;
-use ferrux_canvas::color::{ColorBuilder, palette};
+use ferrux_canvas::color::ColorBuilder;
 use crate::actors::actor::Drawable;
 use crate::actors::Actor;
 use crate::engine::EngineCamera;
 use crate::geometry::Mesh;
 use crate::geometry::Projectable;
 use crate::math::builders::{RotationAxis, RotationMatrixBuilder};
-use crate::geometry::vector::ops::{Dot, Module, Normalizable};
+use crate::geometry::vector::ops::{Dot, Normalizable};
 
 /// Implementation of an actor with a mesh
 pub struct MeshActor {

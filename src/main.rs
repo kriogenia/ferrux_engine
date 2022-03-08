@@ -4,11 +4,11 @@ fn main() -> Result<(), EngineError> {
     env_logger::init();
 
     let config = EngineConfig::default()
-        .set_title("Ferruxe Engine".to_string())
-        .set_width(960)
-        .set_height(960)
-        .set_fov(90.0)
-        .set_z_offset(5.0);
+        .with_title("Ferruxe Engine")
+        .with_width(960)
+        .with_height(960)
+        .with_fov(90.0)
+        .with_z_offset(5.0);
 
     let engine_loop = EngineLoop::new();
 
