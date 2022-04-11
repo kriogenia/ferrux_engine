@@ -16,16 +16,16 @@ type Error<'a> = EngineError<'a>;
 
 /// Graphics engine. It holds the displayed window, the canvas to print in the window and the
 /// environment with the meshes to display.
-pub struct Rust3DEngine<'a> {
+pub struct Rust3DEngine {
     input: WinitInputHelper,
     window: Window,
-    viewport: FerruxViewport<'a>,
+    viewport: FerruxViewport,
     camera: EngineCamera,
     environment: Environment,
     time: SystemTime,
 }
 
-impl<'a> Rust3DEngine<'a> {
+impl Rust3DEngine {
     /// Returns a working engine with the given attributes
     ///
     /// # Arguments
@@ -47,7 +47,7 @@ impl<'a> Rust3DEngine<'a> {
     /// let mut engine = Rust3DEngine::new(engine_loop.event_loop(), EngineConfig::default()).unwrap();
     /// ```
     ///
-    pub fn new(event_loop: &EventLoop<()>, config: EngineConfig<'a>) -> Result<Self, Error<'a>> {
+    pub fn new<'a>(event_loop: &EventLoop<()>, config: EngineConfig<'a>) -> Result<Self, Error<'a>> {
         info!("Building window");
         let window = {
             let size = LogicalSize::new(config.width, config.height);
@@ -64,7 +64,7 @@ impl<'a> Rust3DEngine<'a> {
             EngineError::AdapterNotFound
         })?;
 
-        let environment = Environment::new(&config.file)?;
+        let environment = Environment::new(config.file)?;
 
         Ok(Self {
             input: WinitInputHelper::new(),

@@ -4,4 +4,4 @@ mod environment;
 mod geometry;
 mod math;
 
-type FerruxViewport<'a> = ferrux_viewport::viewport::WinitViewport<'a, u32>;
+type FerruxViewport = ferrux_viewport::viewport::WinitViewport<u32>;

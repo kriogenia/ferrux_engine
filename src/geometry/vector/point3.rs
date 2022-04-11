@@ -2,8 +2,7 @@ use std::ops::{Add, Sub};
 use crate::geometry::projectable::Projectable;
 use crate::geometry::vector::ops::{Cross, Dot, Module, Normalizable};
 use crate::geometry::vector::point_parsing_error::PointParsingError;
-use crate::geometry::vector::Point2;
-use crate::geometry::vector::vector::Vector;
+use crate::geometry::vector::Vector;
 use crate::math::vector_dot_matrix;
 use crate::math::Matrix4;
 
@@ -45,10 +44,10 @@ impl Point3 {
 }
 
 // To generate 2D projected version of the point
-impl Projectable<Point2> for Point3 {
-	fn get_projection(&self, matrix: &Matrix4, offset: f32) -> Point2 {
-		let (x, y, _) = vector_dot_matrix((self.x, self.y, self.z + offset), matrix);
-		Point2 { x, y }
+impl Projectable for Point3 {
+	fn get_projection(&self, matrix: &Matrix4, offset: f32) -> Self {
+		let (x, y, z) = vector_dot_matrix((self.x, self.y, self.z + offset), matrix);
+		Point3 { x, y, z }
 	}
 }
 

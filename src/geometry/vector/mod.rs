@@ -1,9 +1,20 @@
-pub use point2::Point2;
 pub use point3::Point3;
-pub use vector::Vector;
 
-mod point2;
+pub(crate) mod ops;
 mod point3;
 pub mod point_parsing_error;
-mod vector;
-pub(crate) mod ops;
+
+use crate::geometry::vector::ops::{Dot, Module, Normalizable};
+use std::ops::{Add, Sub};
+
+/// N-dimensional vectors. It should be implemented with the vector reference if the intention is
+/// to not consume the vector. Implementations of this trait are **Point2** and **Point3**.
+///
+/// Operations of certain dimension vectors (like the cross-product of R3) are not forced with this
+/// trait
+///
+pub trait Vector<T = Self>: Add<T> + Sub<T> + Dot<T> + Normalizable<T>
+where
+    T: Module,
+{
+}

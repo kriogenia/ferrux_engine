@@ -29,7 +29,7 @@ impl TryFrom<String> for Mesh {
     fn try_from(value: String) -> Result<Self, Self::Error> {
         let parsed: Vec<&str> = value.split(";").collect();
 
-        if parsed.len() == 0 || (parsed.len() == 1 && parsed[0].is_empty()) {
+        if parsed.is_empty() || (parsed.len() == 1 && parsed[0].is_empty()) {
             return Err(GeometryError::InvalidMesh);
         }
 

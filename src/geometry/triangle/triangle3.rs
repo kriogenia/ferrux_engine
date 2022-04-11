@@ -1,5 +1,4 @@
 use crate::geometry::triangle::triangle_parsing_error::TriangleParsingError;
-use crate::geometry::triangle::Triangle2;
 use crate::geometry::Projectable;
 use crate::geometry::vector::Point3;
 use crate::geometry::vector::ops::{Cross, Normalizable};
@@ -18,11 +17,11 @@ impl Triangle3 {
     ///
     pub fn rotate(&mut self, matrix: &Matrix4) {
         self.0
-            .translate(vector_dot_matrix((self.0.x, self.0.y, self.0.z), &matrix));
+            .translate(vector_dot_matrix((self.0.x, self.0.y, self.0.z), matrix));
         self.1
-            .translate(vector_dot_matrix((self.1.x, self.1.y, self.1.z), &matrix));
+            .translate(vector_dot_matrix((self.1.x, self.1.y, self.1.z), matrix));
         self.2
-            .translate(vector_dot_matrix((self.2.x, self.2.y, self.2.z), &matrix));
+            .translate(vector_dot_matrix((self.2.x, self.2.y, self.2.z), matrix));
     }
 
     /// Returns the normal vector of the triangle
@@ -39,9 +38,9 @@ impl Triangle3 {
 
 }
 
-impl Projectable<Triangle2> for Triangle3 {
-    fn get_projection(&self, matrix: &Matrix4, offset: f32) -> Triangle2 {
-        Triangle2(
+impl Projectable for Triangle3 {
+    fn get_projection(&self, matrix: &Matrix4, offset: f32) -> Self {
+        Triangle3(
             self.0.get_projection(matrix, offset),
             self.1.get_projection(matrix, offset),
             self.2.get_projection(matrix, offset),
@@ -176,12 +175,12 @@ mod tests {
             .set_screen_position(1.0)
             .build();
 
-        let result = triangle.get_projection(&matrix, 1.0, 240.0, 480.0);
+        let result = triangle.get_projection(&matrix, 1.0);
 
         let expected = Triangle2(
-            Point2 { x: 240.0, y: 480.0 },
-            Point2 { x: 0.0, y: 0.0 },
-            Point2 { x: 120.0, y: 360.0 },
+            Point2 { x: 1.0, y: 1.0 },
+            Point2 { x: -1.0, y: -1.0 },
+            Point2 { x: 0.0, y: 0.5 },
         );
 
         assert!((result.0.x - expected.0.x).abs() < 0.001);

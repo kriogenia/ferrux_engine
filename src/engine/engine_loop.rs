@@ -11,9 +11,7 @@ pub struct EngineLoop {
 impl EngineLoop {
     /// Creates and returns a new [EngineLoop]
     pub fn new() -> Self {
-        EngineLoop {
-            event_loop: EventLoop::new()
-        }
+        Self::default()
     }
 
     /// Returns the internal [EventLoop]
@@ -38,7 +36,7 @@ impl EngineLoop {
     /// engine_loop.run(engine);
     /// ```
     ///
-    pub fn run(self, mut engine: Rust3DEngine<'static>) {
+    pub fn run(self, mut engine: Rust3DEngine) {
         info!("Starting event loop");
         self.event_loop.run(move |event, _, control_flow| {
             *control_flow = ControlFlow::Poll;
@@ -65,5 +63,11 @@ impl EngineLoop {
                 _ => (),
             }
         });
+    }
+}
+
+impl Default for EngineLoop {
+    fn default() -> Self {
+        Self { event_loop: EventLoop::new() }
     }
 }
