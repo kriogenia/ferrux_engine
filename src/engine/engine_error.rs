@@ -44,7 +44,7 @@ impl<'a> Display for EngineError<'a> {
 impl<'a> From<EnvironmentError<'a>> for EngineError<'a> {
     fn from(e: EnvironmentError<'a>) -> Self {
         match e {
-            EnvironmentError::BadFile(file) => Self::BadFile(file)
+            EnvironmentError::BadFile(file) => Self::BadFile(file),
         }
     }
 }

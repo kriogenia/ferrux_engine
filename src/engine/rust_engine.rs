@@ -1,7 +1,8 @@
-use crate::FerruxViewport;
+use crate::engine::engine_camera::EngineCamera;
 use crate::engine::engine_error::EngineError;
 use crate::engine::EngineConfig;
 use crate::environment::Environment;
+use crate::FerruxViewport;
 use ferrux_viewport::viewport::ViewportFactory;
 use log::{error, info};
 use std::time::SystemTime;
@@ -10,7 +11,6 @@ use winit::event::{Event, VirtualKeyCode};
 use winit::event_loop::EventLoop;
 use winit::window::{Window, WindowBuilder};
 use winit_input_helper::WinitInputHelper;
-use crate::engine::engine_camera::EngineCamera;
 
 type Error<'a> = EngineError<'a>;
 
@@ -47,7 +47,10 @@ impl Rust3DEngine {
     /// let mut engine = Rust3DEngine::new(engine_loop.event_loop(), EngineConfig::default()).unwrap();
     /// ```
     ///
-    pub fn new<'a>(event_loop: &EventLoop<()>, config: EngineConfig<'a>) -> Result<Self, Error<'a>> {
+    pub fn new<'a>(
+        event_loop: &EventLoop<()>,
+        config: EngineConfig<'a>,
+    ) -> Result<Self, Error<'a>> {
         info!("Building window");
         let window = {
             let size = LogicalSize::new(config.width, config.height);
@@ -58,8 +61,8 @@ impl Rust3DEngine {
                 .build(event_loop)
                 .unwrap()
         };
-		// TODO extract depth to config
-		let viewport = ViewportFactory::winit(&window, 1000).map_err(|e| {
+		
+        let viewport = ViewportFactory::winit(&window, config.view_limit as u32).map_err(|e| {
             error!("{:?}", e);
             EngineError::AdapterNotFound
         })?;

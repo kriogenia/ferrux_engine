@@ -38,9 +38,9 @@ impl Drawable for MeshActor {
                 let projection = triangle.get_projection(camera.projection_matrix(), offset);
 
 				viewport.fill_triangle(
-				(projection.0.x, projection.0.y, 0.0),
-				(projection.1.x, projection.1.y, 0.0),
-				(projection.2.x, projection.2.y, 0.0), 
+				(projection.0.x, projection.0.y, projection.0.z),
+				(projection.1.x, projection.1.y, projection.1.z),
+				(projection.2.x, projection.2.y, projection.2.z), 
 					&color);
 
             }
