@@ -12,9 +12,7 @@ pub trait Projectable<T> {
     /// # Arguments
     /// * `matrix` - Projection matrix
     /// * `offset` - Z-Offset to apply for screen distance
-    /// * `width`  - Screen width
-    /// * `height` - Screen height
     ///
-    fn get_projection(&self, matrix: &Matrix4, offset: f32, width: f32, height: f32) -> T;
+    fn get_projection(&self, matrix: &Matrix4, offset: f32) -> T;
 
 }

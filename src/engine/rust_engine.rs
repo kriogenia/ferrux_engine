@@ -1,10 +1,10 @@
+use crate::FerruxViewport;
 use crate::engine::engine_error::EngineError;
 use crate::engine::EngineConfig;
 use crate::environment::Environment;
+use ferrux_viewport::viewport::ViewportFactory;
 use log::{error, info};
 use std::time::SystemTime;
-use ferrux_canvas::canvas::Canvas;
-use ferrux_canvas::canvas::winit::WinitCanvas;
 use winit::dpi::LogicalSize;
 use winit::event::{Event, VirtualKeyCode};
 use winit::event_loop::EventLoop;
@@ -16,16 +16,16 @@ type Error<'a> = EngineError<'a>;
 
 /// Graphics engine. It holds the displayed window, the canvas to print in the window and the
 /// environment with the meshes to display.
-pub struct Rust3DEngine {
+pub struct Rust3DEngine<'a> {
     input: WinitInputHelper,
     window: Window,
-    canvas: WinitCanvas,
+    viewport: FerruxViewport<'a>,
     camera: EngineCamera,
     environment: Environment,
     time: SystemTime,
 }
 
-impl Rust3DEngine {
+impl<'a> Rust3DEngine<'a> {
     /// Returns a working engine with the given attributes
     ///
     /// # Arguments
@@ -47,7 +47,7 @@ impl Rust3DEngine {
     /// let mut engine = Rust3DEngine::new(engine_loop.event_loop(), EngineConfig::default()).unwrap();
     /// ```
     ///
-    pub fn new<'a>(event_loop: &EventLoop<()>, config: EngineConfig<'a>) -> Result<Self, Error<'a>> {
+    pub fn new(event_loop: &EventLoop<()>, config: EngineConfig<'a>) -> Result<Self, Error<'a>> {
         info!("Building window");
         let window = {
             let size = LogicalSize::new(config.width, config.height);
@@ -58,8 +58,8 @@ impl Rust3DEngine {
                 .build(event_loop)
                 .unwrap()
         };
-
-        let canvas = WinitCanvas::new(&window).map_err(|e| {
+		// TODO extract depth to config
+		let viewport = ViewportFactory::winit(&window, 1000).map_err(|e| {
             error!("{:?}", e);
             EngineError::AdapterNotFound
         })?;
@@ -69,7 +69,7 @@ impl Rust3DEngine {
         Ok(Self {
             input: WinitInputHelper::new(),
             window,
-            canvas,
+            viewport,
             camera: EngineCamera::new(&config),
             environment,
             time: SystemTime::now(),
@@ -82,12 +82,12 @@ impl Rust3DEngine {
     /// If some problem in the rendering happens a [EngineError::Rendering] is thrown
     ///
     pub fn draw(&mut self) -> Result<(), EngineError> {
-        self.environment.draw(&mut self.canvas, &self.camera);
-        self.canvas.render().map_err(|e| {
+        self.environment.draw(&mut self.viewport, &self.camera);
+        self.viewport.render().map_err(|e| {
             error!("{:?}", e);
             EngineError::Rendering
         })?;
-        self.canvas.reset_frame();
+        self.viewport.reset_buffer();
         Ok(())
     }
 
@@ -111,7 +111,7 @@ impl Rust3DEngine {
 
             // Resize the window
             if let Some(size) = self.input.window_resized() {
-                self.canvas.resize(size.width, size.height);
+                self.viewport.resize(size.width, size.height);
             }
         }
 

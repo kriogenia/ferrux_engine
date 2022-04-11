@@ -46,9 +46,9 @@ impl Point3 {
 
 // To generate 2D projected version of the point
 impl Projectable<Point2> for Point3 {
-	fn get_projection(&self, matrix: &Matrix4, offset: f32, width: f32, height: f32) -> Point2 {
+	fn get_projection(&self, matrix: &Matrix4, offset: f32) -> Point2 {
 		let (x, y, _) = vector_dot_matrix((self.x, self.y, self.z + offset), matrix);
-		Point2 { x, y }.project(width, height)
+		Point2 { x, y }
 	}
 }
 
@@ -217,9 +217,9 @@ mod test {
 			.set_screen_position(1.0)
 			.build();
 
-		let result = point.get_projection(&matrix, 1.0, 240.0, 480.0);
+		let result = point.get_projection(&matrix, 1.0);
 
-		let expected = Point2 { x: 240.0, y: 480.0 };
+		let expected = Point2 { x: 1.0, y: 1.0 };
 		assert!((result.x - expected.x).abs() < 0.001);
 		assert!((result.y - expected.y).abs() < 0.001);
 	}

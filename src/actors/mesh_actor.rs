@@ -1,5 +1,4 @@
-use ferrux_canvas::canvas::Canvas;
-use ferrux_canvas::color::ColorBuilder;
+use crate::FerruxViewport;
 use crate::actors::actor::Drawable;
 use crate::actors::Actor;
 use crate::engine::EngineCamera;
@@ -25,10 +24,8 @@ impl MeshActor {
 }
 
 impl Drawable for MeshActor {
-    fn draw(&self, canvas: &mut dyn Canvas, camera: &EngineCamera) {
+    fn draw(&self, viewport: &mut FerruxViewport, camera: &EngineCamera) {
         let offset = camera.offset();
-        let width = canvas.width() as f32;
-        let height = canvas.height() as f32;
 
         let light = camera.light().normal();
         for triangle in &self.mesh.triangles {
@@ -36,20 +33,16 @@ impl Drawable for MeshActor {
             let normal = triangle.normal();
             if normal.dot(&(&plain - camera.position())) < 0.0 {
                 let brightness = light.dot(&normal) * (u8::MAX as f32);
-                let color = ColorBuilder::new().with_alpha(brightness as u8).build();
+                //let color = ColorBuilder::new().with_alpha(brightness as u8).build();
+				let color = &[255, 255, 255, 255];		// TODO FIX
 
-                let projection = triangle.get_projection(camera.projection_matrix(),
-                                                         offset, width, height);
+                let projection = triangle.get_projection(camera.projection_matrix(), offset);
 
-                canvas.fill_triangle((projection.0.x as u32, projection.0.y as u32),
-                                     (projection.1.x as u32, projection.1.y as u32),
-                                     (projection.2.x as u32, projection.2.y as u32),
-                                     color);
-                /*
-                canvas.draw_triangle((projection.0.x as u32, projection.0.y as u32),
-                                     (projection.1.x as u32, projection.1.y as u32),
-                                     (projection.2.x as u32, projection.2.y as u32),
-                                     palette::BLACK);*/
+                viewport.fill_triangle(
+					(projection.0.x, projection.0.y, 0.0),
+					(projection.1.x, projection.1.y, 0.0),
+					(projection.2.x, projection.2.y, 0.0), 
+					color);
             }
         }
     }

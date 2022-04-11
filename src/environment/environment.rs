@@ -1,5 +1,5 @@
 use std::fs;
-use ferrux_canvas::canvas::Canvas;
+use crate::FerruxViewport;
 use crate::actors::examples::get_3d_cube;
 use crate::actors::Actor;
 use log::{error, info};
@@ -32,9 +32,9 @@ impl Environment {
     ///
     /// # Arguments
     /// * `canvas` - [EngineCanvas] to draw the actors on
-    pub fn draw(&self, canvas: &mut dyn Canvas, camera: &EngineCamera) {
+    pub fn draw(&self, viewport: &mut FerruxViewport, camera: &EngineCamera) {
         for actor in &self.actors {
-            actor.draw(canvas, camera);
+            actor.draw(viewport, camera);
         }
     }
 

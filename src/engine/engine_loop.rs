@@ -5,14 +5,14 @@ use winit::event_loop::{ControlFlow, EventLoop};
 
 /// Loop to run and manage the updating and drawing process of the [Rust3DEngine]
 pub struct EngineLoop {
-    event_loop: EventLoop<()>,
+    event_loop: EventLoop<()>
 }
 
 impl EngineLoop {
     /// Creates and returns a new [EngineLoop]
     pub fn new() -> Self {
         EngineLoop {
-            event_loop: EventLoop::new(),
+            event_loop: EventLoop::new()
         }
     }
 
@@ -38,7 +38,7 @@ impl EngineLoop {
     /// engine_loop.run(engine);
     /// ```
     ///
-    pub fn run(self, mut engine: Rust3DEngine) {
+    pub fn run(self, mut engine: Rust3DEngine<'static>) {
         info!("Starting event loop");
         self.event_loop.run(move |event, _, control_flow| {
             *control_flow = ControlFlow::Poll;

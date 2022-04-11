@@ -40,11 +40,11 @@ impl Triangle3 {
 }
 
 impl Projectable<Triangle2> for Triangle3 {
-    fn get_projection(&self, matrix: &Matrix4, offset: f32, width: f32, height: f32) -> Triangle2 {
+    fn get_projection(&self, matrix: &Matrix4, offset: f32) -> Triangle2 {
         Triangle2(
-            self.0.get_projection(matrix, offset, width, height),
-            self.1.get_projection(matrix, offset, width, height),
-            self.2.get_projection(matrix, offset, width, height),
+            self.0.get_projection(matrix, offset),
+            self.1.get_projection(matrix, offset),
+            self.2.get_projection(matrix, offset),
         )
     }
 }
