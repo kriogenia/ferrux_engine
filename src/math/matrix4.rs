@@ -1,11 +1,18 @@
 use std::ops::Index;
 
 const SIZE: usize = 4;
+type Matrix = [[f32; SIZE]; SIZE];
 
 /// Dimension four matrix to use with the vector's display calculation
 #[derive(Debug)]
 pub struct Matrix4 {
-    pub(crate) matrix: [[f32; SIZE]; SIZE],
+    pub(crate) matrix: Matrix,
+}
+
+impl Matrix4 {
+	pub fn new(matrix: Matrix) -> Self {
+		Self {	matrix	}
+	}
 }
 
 impl Default for Matrix4 {

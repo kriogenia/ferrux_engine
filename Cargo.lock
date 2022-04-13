@@ -362,11 +362,18 @@ name = "ferrux_engine"
 version = "0.1.0"
 dependencies = [
  "env_logger",
+ "ferrux_projection_matrix",
  "ferrux_viewport",
  "log",
  "winit",
  "winit_input_helper",
 ]
+
+[[package]]
+name = "ferrux_projection_matrix"
+version = "0.1.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "716a8439f91e77a66762ec165f3588772029b4cb465965f9dd1998ffa8be01c1"
 
 [[package]]
 name = "ferrux_viewport"

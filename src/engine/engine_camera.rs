@@ -1,7 +1,7 @@
 use crate::engine::EngineConfig;
 use crate::geometry::vector::Point3;
-use crate::math::builders::ProjectionMatrixBuilder;
 use crate::math::Matrix4;
+use ferrux_projection_matrix::ProjectionMatrixBuilder;
 
 pub struct EngineCamera {
 	position: Point3,
@@ -12,9 +12,9 @@ pub struct EngineCamera {
 
 impl EngineCamera {
 	pub fn new(config: &EngineConfig) -> Self {
-		let projection_matrix = ProjectionMatrixBuilder::new()
-			.set_screen_position(config.screen_position)
-			.set_view_limit(config.view_limit)
+		let matrix = ProjectionMatrixBuilder::new()
+			.set_near(config.screen_position)
+			.set_far(config.view_limit)
 			.set_fov(config.fov)
 			.set_width(config.width as usize)
 			.set_height(config.height as usize)
@@ -22,7 +22,7 @@ impl EngineCamera {
 
 		Self {
 			position: Point3 { x: 0.0, y: 0.0, z: 0.0},
-			projection_matrix,
+			projection_matrix: Matrix4::new(matrix),
 			z_offset: config.z_offset,
 			light: config.light_direction.clone(),
 		}

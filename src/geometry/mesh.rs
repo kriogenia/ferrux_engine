@@ -1,5 +1,9 @@
+use log::error;
+
 use crate::geometry::geometry_error::GeometryError;
 use crate::geometry::triangle::Triangle3;
+
+use super::vector::Point3;
 
 /// Mesh of triangles
 ///
@@ -8,6 +12,7 @@ use crate::geometry::triangle::Triangle3;
 ///
 #[derive(Debug)]
 pub struct Mesh {
+	//points: Vec<Point3>,
     /// List of triangles conforming the mesh
     pub triangles: Vec<Triangle3>,
 }
@@ -19,7 +24,10 @@ impl Mesh {
     /// * `triangles` - List of triangles of the mesh
     ///
     fn new(triangles: Vec<Triangle3>) -> Self {
-        Self { triangles }
+        Self {
+			//points: vec![], 
+			triangles
+		}
     }
 }
 
@@ -27,19 +35,45 @@ impl TryFrom<String> for Mesh {
     type Error = GeometryError;
 
     fn try_from(value: String) -> Result<Self, Self::Error> {
-        let parsed: Vec<&str> = value.split(";").collect();
+		let mut points = Vec::new();
+
+		for line in value.lines() {
+			let mut iter =  line.split_whitespace();
+			match iter.next() {
+				Some("v") => {
+					let x = iter.next().ok_or(GeometryError::MissingCoordinate(line.to_string()))?.parse().map_err(|e| {
+						error!("{}", e);
+						GeometryError::WrongFloat(line.to_string())
+					})?;
+					let y = iter.next().ok_or(GeometryError::MissingCoordinate(line.to_string()))?.parse().map_err(|e| {
+						error!("{}", e);
+						GeometryError::WrongFloat(line.to_string())
+					})?;
+					let z = iter.next().ok_or(GeometryError::MissingCoordinate(line.to_string()))?.parse().map_err(|e| {
+						error!("{}", e);
+						GeometryError::WrongFloat(line.to_string())
+					})?;
+					points.push(Point3 { x, y, z })
+				},
+				Some("f") => {
+					println!("Triangle: {}, {}, {}", iter.next().unwrap(), iter.next().unwrap(), iter.next().unwrap());
+				},
+				_ => {}
+			}
+		}
+
+		let parsed: Vec<&str> = value.split(";").collect();
 
         if parsed.is_empty() || (parsed.len() == 1 && parsed[0].is_empty()) {
             return Err(GeometryError::InvalidMesh);
         }
 
         let mut triangles = Vec::new();
-
-        for slice in parsed {
+		for slice in parsed {
             let triangle = slice.to_string().try_into()?;
             triangles.push(triangle);
         }
-
+		
         Ok(Mesh::new(triangles))
     }
 }

@@ -1,10 +1,10 @@
 pub mod error;
 
-use crate::FerruxViewport;
-use crate::actors::examples::get_3d_cube;
+use crate::{actors::examples::get_3d_cube, geometry::Mesh};
 use crate::actors::Actor;
 use crate::engine::EngineCamera;
 use crate::environment::error::EnvironmentError;
+use crate::FerruxViewport;
 use log::{error, info};
 use std::fs;
 
@@ -19,11 +19,12 @@ impl Environment {
         info!("Creating environment");
         let cube1 = get_3d_cube();
 
-        let _ = fs::read_to_string(file)
-          .map_err(|e| {
-              error!("{}", e);
-              EnvironmentError::BadFile(file)
-          })?;
+        let content = fs::read_to_string(file).map_err(|e| {
+            error!("{}", e);
+            EnvironmentError::BadFile(file)
+        })?;
+
+		//let mesh = Mesh::try_from(content).unwrap();
 
         Ok(Environment {
             actors: vec![Box::new(cube1)],
