@@ -1,6 +1,6 @@
 pub mod error;
 
-use crate::actors::examples::get_3d_cube;
+use crate::geometry::Mesh;
 use crate::actors::Actor;
 use crate::engine::EngineCamera;
 use crate::environment::error::EnvironmentError;
@@ -17,17 +17,17 @@ impl Environment {
     /// Returns a new instance of the environment
     pub(crate) fn new(file: &str) -> Result<Self, EnvironmentError> {
         info!("Creating environment");
-        let cube1 = get_3d_cube();
+        //let cube1 = get_3d_cube();
 
-        let _content = fs::read_to_string(file).map_err(|e| {
+        let content = fs::read_to_string(file).map_err(|e| {
             error!("{}", e);
             EnvironmentError::BadFile(file)
         })?;
 
-		//let mesh = Mesh::try_from(content).unwrap();
+		let mesh = Mesh::try_from(content).unwrap();
 
         Ok(Environment {
-            actors: vec![Box::new(cube1)],
+            actors: vec![/*Box::new(cube1)*/],
         })
     }
 

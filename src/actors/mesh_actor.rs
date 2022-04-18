@@ -8,22 +8,22 @@ use crate::math::builders::{RotationAxis, RotationMatrixBuilder};
 use crate::geometry::vector::ops::{Dot, Normalizable};
 
 /// Implementation of an actor with a mesh
-pub struct MeshActor {
-    mesh: Mesh,
+pub struct MeshActor<'a> {
+    mesh: Mesh<'a>,
 }
 
-impl MeshActor {
+impl<'a> MeshActor<'a> {
     /// Creates a new actor with the given mesh
     ///
     /// # Arguments
     /// * `mesh` - Mesh of the actor
     ///
-    pub fn new(mesh: Mesh) -> Self {
+    pub fn new(mesh: Mesh<'a>) -> Self {
         Self { mesh }
     }
 }
 
-impl Drawable for MeshActor {
+impl<'a> Drawable for MeshActor<'a> {
     fn draw(&self, viewport: &mut FerruxViewport, camera: &EngineCamera) {
         let offset = camera.offset();
 
@@ -48,7 +48,7 @@ impl Drawable for MeshActor {
     }
 }
 
-impl Actor for MeshActor {
+impl<'a> Actor for MeshActor<'a> {
     fn update(&mut self, delta: u128) {
         let matrix_x = RotationMatrixBuilder::new()
             .in_axis(RotationAxis::X)

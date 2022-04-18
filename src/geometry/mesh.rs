@@ -1,41 +1,44 @@
 use crate::geometry::geometry_error::GeometryError;
-use crate::geometry::triangle::Triangle3;
 
+use super::triangle::Triangle;
 use super::vector::Point3;
 use super::util::parse_next;
 
 /// Mesh of triangles
 ///
 /// # Properties
+/// * `points` - List of points of the mesh
 /// * `triangles` - List of triangles of the mesh
 ///
 #[derive(Debug)]
-pub struct Mesh {
-	//points: Vec<Point3>,
+pub struct Mesh<'a> {
+	/// List of points conforming the mesh
+	points: Vec<Point3>,
     /// List of triangles conforming the mesh
-    pub triangles: Vec<Triangle3>,
+    pub triangles: Vec<Triangle<'a>>,
 }
 
-impl Mesh {
+impl<'a> Mesh<'a> {
     /// Returns a new empty mesh
     ///
     /// # Arguments
     /// * `triangles` - List of triangles of the mesh
     ///
-    fn new(triangles: Vec<Triangle3>) -> Self {
-        Self {
-			//points: vec![], 
-			triangles
-		}
+    fn new(points: Vec<Point3>, triangles: Vec<Triangle<'a>>) -> Self {
+        Self { points, triangles }
     }
 }
 
-impl TryFrom<String> for Mesh {
+impl<'a> TryFrom<String> for Mesh<'a> {
     type Error = GeometryError;
 
     fn try_from(value: String) -> Result<Self, Self::Error> {
 		let mut points = Vec::new();
+		let mut triangles = Vec::new();
 
+		// TODO this can be optimized using a single loop
+
+		// Populate point list				// TODO make function of parser
 		for line in value.lines() {
 			let mut iter =  line.split_whitespace();
 			match iter.next() {
@@ -43,31 +46,27 @@ impl TryFrom<String> for Mesh {
 					let x = parse_next(iter.next(), line)?;
 					let y = parse_next(iter.next(), line)?;
 					let z = parse_next(iter.next(), line)?;
-					points.push(Point3 { x, y, z })
+					points.push(Point3 { x, y, z });
 				},
+				Some("f") => break,
+				_ => {}
+			}
+		}
+		// Populate triangle list
+		for line in value.lines() {
+			let mut iter =  line.split_whitespace();
+			match iter.next() {
 				Some("f") => {
-					let first: i32 = parse_next(iter.next(), line)?;
-					let second: i32 = parse_next(iter.next(), line)?;
-					let third: i32 = parse_next(iter.next(), line)?;
-					println!("Triangle: {}, {}, {}", first, second, third);
+					let first= parse_next::<usize>(iter.next(), line)? - 1;
+					let second = parse_next::<usize>(iter.next(), line)? - 1;
+					let third = parse_next::<usize>(iter.next(), line)? - 1;
+					triangles.push(Triangle(&points[first], &points[second], &points[third]));
 				},
 				_ => {}
 			}
 		}
 
-		let parsed: Vec<&str> = value.split(";").collect();
-
-        if parsed.is_empty() || (parsed.len() == 1 && parsed[0].is_empty()) {
-            return Err(GeometryError::InvalidMesh);
-        }
-
-        let mut triangles = Vec::new();
-		for slice in parsed {
-            let triangle = slice.to_string().try_into()?;
-            triangles.push(triangle);
-        }
-		
-        Ok(Mesh::new(triangles))
+        Ok(Mesh::new(points, triangles))
     }
 }
 
