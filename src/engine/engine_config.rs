@@ -8,7 +8,7 @@ const DEFAULT_SCREEN_POSITION: f32 = 0.1;
 const DEFAULT_VIEW_LIMIT: f32 = 1000.0;
 const DEFAULT_Z_OFFSET: f32 = 3.0;
 const DEFAULT_LIGHT: Point3 = Point3 { x: 0.0, y: 0.0, z: -1.0 };
-const DEFAULT_FILE: &str = "resources/rename.obj";
+const DEFAULT_FILE: &str = "resources/spaceship.obj";
 
 // TODO check invalid values
 /// Entity holding all the configurable options of the engine

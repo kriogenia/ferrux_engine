@@ -1,7 +1,10 @@
+use std::cell::RefCell;
 use std::rc::Rc;
 
 use crate::geometry::geometry_error::GeometryError;
+use crate::math::Matrix4;
 
+use super::Rotation;
 use super::triangle::Triangle;
 use super::vector::Point3;
 use super::util::parse_next;
@@ -15,7 +18,7 @@ use super::util::parse_next;
 #[derive(Debug)]
 pub struct Mesh {
 	/// List of points conforming the mesh
-	points: Vec<Rc<Point3>>,
+	points: Vec<Rc<RefCell<Point3>>>,
     /// List of triangles conforming the mesh
     pub triangles: Vec<Triangle>,
 }
@@ -26,9 +29,17 @@ impl Mesh {
     /// # Arguments
     /// * `triangles` - List of triangles of the mesh
     ///
-    fn new(points: Vec<Rc<Point3>>, triangles: Vec<Triangle>) -> Self {
+    fn new(points: Vec<Rc<RefCell<Point3>>>, triangles: Vec<Triangle>) -> Self {
         Self { points, triangles }
     }
+}
+
+impl Rotation for Mesh {
+	fn rotate(&mut self, rotation: &Matrix4) {
+		for point in &self.points {
+			(*point).borrow_mut().rotate(rotation);
+		}
+	}
 }
 
 impl TryFrom<String> for Mesh {
@@ -48,7 +59,7 @@ impl TryFrom<String> for Mesh {
 					let x = parse_next(iter.next(), line)?;
 					let y = parse_next(iter.next(), line)?;
 					let z = parse_next(iter.next(), line)?;
-					points.push(Rc::new(Point3 { x, y, z }));
+					points.push(Rc::new(RefCell::new(Point3 { x, y, z })));
 				},
 				Some("f") => break,
 				_ => {}

@@ -2,7 +2,6 @@ pub use point3::Point3;
 
 pub(crate) mod ops;
 mod point3;
-pub mod point_parsing_error;
 
 use crate::geometry::vector::ops::{Dot, Module, Normalizable};
 use std::ops::{Add, Sub};

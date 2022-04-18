@@ -4,7 +4,8 @@ use crate::actors::Actor;
 use crate::engine::EngineCamera;
 use crate::geometry::Mesh;
 use crate::geometry::Projectable;
-//use crate::math::builders::{RotationAxis, RotationMatrixBuilder};
+use crate::geometry::Rotation;
+use crate::math::builders::{RotationAxis, RotationMatrixBuilder};
 use crate::geometry::vector::ops::{Dot, Normalizable};
 
 /// Implementation of an actor with a mesh
@@ -26,10 +27,10 @@ impl MeshActor {
 impl Drawable for MeshActor {
     fn draw(&self, viewport: &mut FerruxViewport, camera: &EngineCamera) {
         let offset = camera.offset();
-
         let light = camera.light().normal();
+		
         for triangle in &self.mesh.triangles {
-            let plain = triangle.plain_component().clone().apply_offset(offset);
+            let plain = triangle.plain_component().apply_offset(offset);
             let normal = triangle.normal();
             if normal.dot(&(&plain - camera.position())) < 0.0 {
                 let brightness = (light.dot(&normal) * (u8::MAX as f32)) as u8;
@@ -42,15 +43,13 @@ impl Drawable for MeshActor {
 				(projection.1.x, projection.1.y, projection.1.z),
 				(projection.2.x, projection.2.y, projection.2.z), 
 					&color);
-
             }
         }
     }
 }
 
 impl Actor for MeshActor {
-    fn update(&mut self, _delta: u128) {
-		/*
+    fn update(&mut self, delta: u128) {
         let matrix_x = RotationMatrixBuilder::new()
             .in_axis(RotationAxis::X)
             .with_speed(0.005)
@@ -62,9 +61,9 @@ impl Actor for MeshActor {
             .with_theta(delta as f32 * 0.1)
             .build();
 
-        for triangle in &mut self.mesh.triangles {
-            triangle.rotate(&matrix_x);
-            triangle.rotate(&matrix_z)
-        } */
+		// TODO matrix multiplication to optimize calculation
+
+		self.mesh.rotate(&matrix_x);
+		self.mesh.rotate(&matrix_z);
     }
 }

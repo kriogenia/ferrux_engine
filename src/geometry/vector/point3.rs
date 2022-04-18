@@ -1,7 +1,7 @@
 use std::ops::{Add, Sub};
+use crate::geometry::Rotation;
 use crate::geometry::projectable::Projectable;
 use crate::geometry::vector::ops::{Cross, Dot, Module, Normalizable};
-use crate::geometry::vector::point_parsing_error::PointParsingError;
 use crate::geometry::vector::Vector;
 use crate::math::vector_dot_matrix;
 use crate::math::Matrix4;
@@ -43,7 +43,6 @@ impl Point3 {
 
 }
 
-// To generate 2D projected version of the point
 impl Projectable<Point3> for Point3 {
 	fn get_projection(&self, matrix: &Matrix4, offset: f32) -> Self {
 		let (x, y, z) = vector_dot_matrix((self.x, self.y, self.z + offset), matrix);
@@ -51,25 +50,11 @@ impl Projectable<Point3> for Point3 {
 	}
 }
 
-// Parsing of the point from a string
-impl TryFrom<String> for Point3 {
-	type Error = PointParsingError;
-
-	fn try_from(value: String) -> Result<Self, Self::Error> {
-		let parsed: Vec<&str> = value.split(" ").collect();
-
-		if parsed.len() != 3 {
-			return Err(PointParsingError::InvalidAxisNumber);
-		}
-
-		let x = parsed[0].parse::<f32>()?;
-		let y = parsed[1].parse::<f32>()?;
-		let z = parsed[2].parse::<f32>()?;
-
-		Ok(Point3 { x, y, z })
+impl Rotation for Point3 {
+	fn rotate(&mut self, rotation: &Matrix4) {
+		self.translate(vector_dot_matrix((self.x, self.y, self.z), rotation));
 	}
 }
-
 // Vector addition
 impl<'a> Add<&'a Point3> for &'a Point3 {
 	type Output = Point3;
@@ -144,40 +129,10 @@ impl<'a> Vector<&'a Point3> for &'a Point3 {}
 #[cfg(test)]
 mod test {
 	use crate::geometry::projectable::Projectable;
-	use crate::geometry::vector::point_parsing_error::PointParsingError;
 	use crate::geometry::vector::Point3;
 	use crate::geometry::vector::ops::*;
-use crate::math::Matrix4;
+	use crate::math::Matrix4;
 	use ferrux_projection_matrix::ProjectionMatrixBuilder;
-
-	#[test]
-	fn valid_parsing() {
-		let point = Point3::try_from("1.0 0 -3.5".to_string()).unwrap();
-		assert_eq!(
-			point,
-			Point3 {
-				x: 1.0,
-				y: 0.0,
-				z: -3.5
-			}
-		);
-	}
-
-	#[test]
-	fn invalid_parsing() {
-		assert_eq!(
-			Point3::try_from("0 0".to_string()).unwrap_err(),
-			PointParsingError::InvalidAxisNumber
-		);
-		assert_eq!(
-			Point3::try_from("0 0 0 0".to_string()).unwrap_err(),
-			PointParsingError::InvalidAxisNumber
-		);
-		assert_eq!(
-			Point3::try_from("0 0 a".to_string()).unwrap_err(),
-			PointParsingError::InvalidFloat
-		);
-	}
 
 	#[test]
 	fn module() {
