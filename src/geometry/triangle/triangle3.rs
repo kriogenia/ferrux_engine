@@ -70,10 +70,11 @@ impl TryFrom<String> for Triangle3 {
 mod tests {
     use crate::geometry::projectable::Projectable;
     use crate::geometry::triangle::triangle_parsing_error::TriangleParsingError;
-    use crate::geometry::triangle::{Triangle2, Triangle3};
+    use crate::geometry::triangle::Triangle3;
     use crate::geometry::vector::point_parsing_error::PointParsingError;
-    use crate::geometry::vector::{Point2, Point3};
-    use crate::math::builders::ProjectionMatrixBuilder;
+    use crate::geometry::vector::Point3;
+    use crate::math::Matrix4;
+    use ferrux_projection_matrix::ProjectionMatrixBuilder;
 
     #[test]
     fn valid_parsing() {
@@ -171,16 +172,16 @@ mod tests {
             .set_height(1)
             .set_width(1)
             .set_fov(90.0)
-            .set_view_limit(2.0)
-            .set_screen_position(1.0)
+            .set_far(2.0)
+            .set_near(1.0)
             .build();
 
-        let result = triangle.get_projection(&matrix, 1.0);
+        let result = triangle.get_projection(&Matrix4::new(matrix), 1.0);
 
-        let expected = Triangle2(
-            Point2 { x: 1.0, y: 1.0 },
-            Point2 { x: -1.0, y: -1.0 },
-            Point2 { x: 0.0, y: 0.5 },
+        let expected = Triangle3(
+            Point3 { x: 1.0, y: 1.0, z: 1.0 },
+            Point3 { x: -1.0, y: -1.0, z: -1.0 },
+            Point3 { x: 0.0, y: 0.5, z: 1.0 },
         );
 
         assert!((result.0.x - expected.0.x).abs() < 0.001);

@@ -27,7 +27,7 @@ type Vector = (f32, f32, f32);
 
 #[cfg(test)]
 mod tests {
-    use crate::math::builders::ProjectionMatrixBuilder;
+    use ferrux_projection_matrix::ProjectionMatrixBuilder;
     use crate::math::{vector_dot_matrix, Matrix4};
 
     #[test]
@@ -43,11 +43,11 @@ mod tests {
             .set_height(1)
             .set_width(1)
             .set_fov(90.0)
-            .set_view_limit(2.0)
-            .set_screen_position(1.0)
+            .set_far(2.0)
+            .set_near(1.0)
             .build();
 
-        let result = vector_dot_matrix(point, &matrix);
+        let result = vector_dot_matrix(point, &Matrix4::new(matrix));
         let expected = (1.0, 1.0, 0.0);
         assert!((result.0 - expected.0).abs() < 0.0001);
         assert!((result.1 - expected.1).abs() < 0.0001);

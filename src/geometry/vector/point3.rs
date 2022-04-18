@@ -155,9 +155,10 @@ impl Clone for Point3 {
 mod test {
 	use crate::geometry::projectable::Projectable;
 	use crate::geometry::vector::point_parsing_error::PointParsingError;
-	use crate::geometry::vector::{Point2, Point3};
+	use crate::geometry::vector::Point3;
 	use crate::geometry::vector::ops::*;
-	use crate::math::builders::ProjectionMatrixBuilder;
+use crate::math::Matrix4;
+	use ferrux_projection_matrix::ProjectionMatrixBuilder;
 
 	#[test]
 	fn valid_parsing() {
@@ -212,15 +213,16 @@ mod test {
 			.set_height(1)
 			.set_width(1)
 			.set_fov(90.0)
-			.set_view_limit(2.0)
-			.set_screen_position(1.0)
+			.set_far(2.0)
+			.set_near(1.0)
 			.build();
 
-		let result = point.get_projection(&matrix, 1.0);
+		let result = point.get_projection(&Matrix4::new(matrix), 1.0);
 
-		let expected = Point2 { x: 1.0, y: 1.0 };
+		let expected = Point3 { x: 1.0, y: 1.0, z: 0.0 };
 		assert!((result.x - expected.x).abs() < 0.001);
 		assert!((result.y - expected.y).abs() < 0.001);
+		assert!((result.z - expected.z).abs() < 0.001);
 	}
 
 	#[test]
