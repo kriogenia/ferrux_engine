@@ -7,8 +7,8 @@ pub enum GeometryError {
     InvalidMesh,
     InvalidPoint(TriangleParsingError),
     InvalidTriangle(TriangleParsingError),
-	MissingCoordinate(String),
-	WrongFloat(String)
+	MissingValue(String),
+	WrongNumber(String)
 }
 
 impl GeometryError {
@@ -17,8 +17,8 @@ impl GeometryError {
             Self::InvalidMesh => "Invalid mesh. At least one triangle is required.".to_string(),
             Self::InvalidPoint(error) => format!("Invalid triangle: {}", error),
             Self::InvalidTriangle(error) => format!("Invalid triangle: {}", error),
-			Self::MissingCoordinate(line) => format!("Missing coordinate for point: {}", line),
-			Self::WrongFloat(line) => format!("Invalid float in point: {}", line),
+			Self::MissingValue(line) => format!("Missing value on line: {}", line),
+			Self::WrongNumber(line) => format!("Invalid number on line: {}", line),
         }
     }
 }

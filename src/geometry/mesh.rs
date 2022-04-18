@@ -1,9 +1,8 @@
-use log::error;
-
 use crate::geometry::geometry_error::GeometryError;
 use crate::geometry::triangle::Triangle3;
 
 use super::vector::Point3;
+use super::util::parse_next;
 
 /// Mesh of triangles
 ///
@@ -41,22 +40,16 @@ impl TryFrom<String> for Mesh {
 			let mut iter =  line.split_whitespace();
 			match iter.next() {
 				Some("v") => {
-					let x = iter.next().ok_or(GeometryError::MissingCoordinate(line.to_string()))?.parse().map_err(|e| {
-						error!("{}", e);
-						GeometryError::WrongFloat(line.to_string())
-					})?;
-					let y = iter.next().ok_or(GeometryError::MissingCoordinate(line.to_string()))?.parse().map_err(|e| {
-						error!("{}", e);
-						GeometryError::WrongFloat(line.to_string())
-					})?;
-					let z = iter.next().ok_or(GeometryError::MissingCoordinate(line.to_string()))?.parse().map_err(|e| {
-						error!("{}", e);
-						GeometryError::WrongFloat(line.to_string())
-					})?;
+					let x = parse_next(iter.next(), line)?;
+					let y = parse_next(iter.next(), line)?;
+					let z = parse_next(iter.next(), line)?;
 					points.push(Point3 { x, y, z })
 				},
 				Some("f") => {
-					println!("Triangle: {}, {}, {}", iter.next().unwrap(), iter.next().unwrap(), iter.next().unwrap());
+					let first: i32 = parse_next(iter.next(), line)?;
+					let second: i32 = parse_next(iter.next(), line)?;
+					let third: i32 = parse_next(iter.next(), line)?;
+					println!("Triangle: {}, {}, {}", first, second, third);
 				},
 				_ => {}
 			}
