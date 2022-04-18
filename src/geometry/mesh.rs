@@ -1,3 +1,5 @@
+use std::rc::Rc;
+
 use crate::geometry::geometry_error::GeometryError;
 
 use super::triangle::Triangle;
@@ -11,25 +13,25 @@ use super::util::parse_next;
 /// * `triangles` - List of triangles of the mesh
 ///
 #[derive(Debug)]
-pub struct Mesh<'a> {
+pub struct Mesh {
 	/// List of points conforming the mesh
-	points: Vec<Point3>,
+	points: Vec<Rc<Point3>>,
     /// List of triangles conforming the mesh
-    pub triangles: Vec<Triangle<'a>>,
+    pub triangles: Vec<Triangle>,
 }
 
-impl<'a> Mesh<'a> {
+impl Mesh {
     /// Returns a new empty mesh
     ///
     /// # Arguments
     /// * `triangles` - List of triangles of the mesh
     ///
-    fn new(points: Vec<Point3>, triangles: Vec<Triangle<'a>>) -> Self {
+    fn new(points: Vec<Rc<Point3>>, triangles: Vec<Triangle>) -> Self {
         Self { points, triangles }
     }
 }
 
-impl<'a> TryFrom<String> for Mesh<'a> {
+impl TryFrom<String> for Mesh {
     type Error = GeometryError;
 
     fn try_from(value: String) -> Result<Self, Self::Error> {
@@ -46,7 +48,7 @@ impl<'a> TryFrom<String> for Mesh<'a> {
 					let x = parse_next(iter.next(), line)?;
 					let y = parse_next(iter.next(), line)?;
 					let z = parse_next(iter.next(), line)?;
-					points.push(Point3 { x, y, z });
+					points.push(Rc::new(Point3 { x, y, z }));
 				},
 				Some("f") => break,
 				_ => {}
@@ -60,7 +62,7 @@ impl<'a> TryFrom<String> for Mesh<'a> {
 					let first= parse_next::<usize>(iter.next(), line)? - 1;
 					let second = parse_next::<usize>(iter.next(), line)? - 1;
 					let third = parse_next::<usize>(iter.next(), line)? - 1;
-					triangles.push(Triangle(&points[first], &points[second], &points[third]));
+					triangles.push(Triangle(points[first].clone(), points[second].clone(), points[third].clone()));
 				},
 				_ => {}
 			}

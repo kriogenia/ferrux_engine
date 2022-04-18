@@ -1,6 +1,6 @@
 pub mod error;
 
-use crate::geometry::Mesh;
+use crate::{geometry::Mesh, actors::mesh_actor::MeshActor};
 use crate::actors::Actor;
 use crate::engine::EngineCamera;
 use crate::environment::error::EnvironmentError;
@@ -27,7 +27,7 @@ impl Environment {
 		let mesh = Mesh::try_from(content).unwrap();
 
         Ok(Environment {
-            actors: vec![/*Box::new(cube1)*/],
+            actors: vec![ Box::new(MeshActor::new(mesh)) ],
         })
     }
 

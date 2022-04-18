@@ -11,7 +11,7 @@ use crate::math::Matrix4;
 /// # Properties
 /// * `x`, `y`, `z` - Axes of the vector
 ///
-#[derive(Debug, PartialEq)]
+#[derive(Clone, Debug, PartialEq)]
 pub struct Point3 {
 	pub x: f32,
 	pub y: f32,
@@ -44,7 +44,7 @@ impl Point3 {
 }
 
 // To generate 2D projected version of the point
-impl Projectable for Point3 {
+impl Projectable<Point3> for Point3 {
 	fn get_projection(&self, matrix: &Matrix4, offset: f32) -> Self {
 		let (x, y, z) = vector_dot_matrix((self.x, self.y, self.z + offset), matrix);
 		Point3 { x, y, z }
@@ -140,16 +140,6 @@ impl<'a> Normalizable<&'a Point3> for &'a Point3 {
 }
 
 impl<'a> Vector<&'a Point3> for &'a Point3 {}
-
-impl Clone for Point3 {
-	fn clone(&self) -> Self {
-		Self {
-			x: self.x,
-			y: self.y,
-			z: self.z
-		}
-	}
-}
 
 #[cfg(test)]
 mod test {
