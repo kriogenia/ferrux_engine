@@ -76,7 +76,12 @@ impl TryFrom<String> for Mesh {
 			}
 		}
 
-        Ok(Mesh::new(points, triangles))
+		if points.is_empty() || triangles.is_empty() {
+			Err(GeometryError::EmptyMesh)
+		} else {
+			Ok(Mesh::new(points, triangles))
+		}
+
     }
 }
 
@@ -84,30 +89,39 @@ impl TryFrom<String> for Mesh {
 mod tests {
     use super::Mesh;
     use crate::geometry::geometry_error::GeometryError;
-    use crate::geometry::triangle::triangle_parsing_error::TriangleParsingError;
-    use crate::geometry::vector::point_parsing_error::PointParsingError;
 
     #[test]
     fn valid_parsing() {
-        let mesh = Mesh::try_from("1.0 0 -3.5,0 1 2,3 5 2;2 1 0,1 0 2,2 2 2".to_string()).unwrap();
-        assert_eq!(mesh.triangles.len(), 2);
+        let mesh = Mesh::try_from("
+			v 1.0 0.0 0.0
+			v 0.0 1.0 0.0
+			v 0.0 0.0 1.0
+			v 0.0 0.0 0.0
+			f 1 2 3
+			f 2 3 4
+			f 3 4 1
+			f 4 1 2
+			".to_string()).unwrap();
+        assert_eq!(mesh.triangles.len(), 4);
+		assert_eq!(mesh.triangles[0].1, mesh.triangles[1].0);
+		assert_eq!(mesh.triangles[1].1, mesh.triangles[2].0);
+		assert_eq!(mesh.triangles[2].1, mesh.triangles[3].0);
+		assert_eq!(mesh.triangles[3].1, mesh.triangles[0].0);
     }
 
     #[test]
     fn invalid_parsing() {
         assert_eq!(
             Mesh::try_from("".to_string()).unwrap_err(),
-            GeometryError::InvalidMesh
+            GeometryError::EmptyMesh
         );
         assert_eq!(
-            Mesh::try_from("a 0 -3.5,1 0 1,0 0 0".to_string()).unwrap_err(),
-            GeometryError::InvalidPoint(TriangleParsingError::InvalidPoint(
-                PointParsingError::InvalidFloat
-            ))
+            Mesh::try_from("v 1.0 0.0 a".to_string()).unwrap_err(),
+            GeometryError::WrongNumber("v 1.0 0.0 a".to_string())
         );
         assert_eq!(
-            Mesh::try_from("0 0".to_string()).unwrap_err(),
-            GeometryError::InvalidTriangle(TriangleParsingError::InvalidPointNumber)
+            Mesh::try_from("v 0 0".to_string()).unwrap_err(),
+            GeometryError::MissingValue("v 0 0".to_string())
         );
     }
 }

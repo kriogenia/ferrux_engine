@@ -48,7 +48,7 @@ mod tests {
             .build();
 
         let result = vector_dot_matrix(point, &Matrix4::new(matrix));
-        let expected = (1.0, 1.0, 0.0);
+        let expected = (-1.0, -1.0, 7.0);
         assert!((result.0 - expected.0).abs() < 0.0001);
         assert!((result.1 - expected.1).abs() < 0.0001);
         assert!((result.2 - expected.2).abs() < 0.0001);

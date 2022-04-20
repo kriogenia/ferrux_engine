@@ -41,10 +41,8 @@ mod tests {
     use std::cell::RefCell;
     use std::rc::Rc;
 
-    use crate::geometry::Projectable;
     use crate::geometry::triangle::Triangle;
     use crate::geometry::vector::Point3;
-    use crate::math::Matrix4;
     
 	macro_rules! wrap {
 		($point:tt) => {
