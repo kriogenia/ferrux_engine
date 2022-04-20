@@ -68,14 +68,11 @@ impl TryFrom<String> for Mesh {
 		// Populate triangle list
 		for line in value.lines() {
 			let mut iter =  line.split_whitespace();
-			match iter.next() {
-				Some("f") => {
-					let first= parse_next::<usize>(iter.next(), line)? - 1;
-					let second = parse_next::<usize>(iter.next(), line)? - 1;
-					let third = parse_next::<usize>(iter.next(), line)? - 1;
-					triangles.push(Triangle(points[first].clone(), points[second].clone(), points[third].clone()));
-				},
-				_ => {}
+			if let Some("f") = iter.next() {
+				let first= parse_next::<usize>(iter.next(), line)? - 1;
+				let second = parse_next::<usize>(iter.next(), line)? - 1;
+				let third = parse_next::<usize>(iter.next(), line)? - 1;
+				triangles.push(Triangle(points[first].clone(), points[second].clone(), points[third].clone()));
 			}
 		}
 

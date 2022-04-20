@@ -8,7 +8,7 @@ fn main() -> Result<(), EngineError<'static>> {
         .with_width(960)
         .with_height(960)
         .with_fov(90.0)
-        .with_z_offset(15.0)
+        .with_z_offset(10.0)
 		.using_file("resources/spaceship.obj");
 
     let engine_loop = EngineLoop::new();

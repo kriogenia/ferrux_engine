@@ -13,14 +13,14 @@ pub fn vector_dot_matrix(vector: Vector, matrix: &Matrix4) -> Vector {
         vector.0 * matrix[0][1] + vector.1 * matrix[1][1] + vector.2 * matrix[2][1] + matrix[3][1];
     let z =
         vector.0 * matrix[0][2] + vector.1 * matrix[1][2] + vector.2 * matrix[2][2] + matrix[3][2];
-    let w =
+    let mut w =
         vector.0 * matrix[0][3] + vector.1 * matrix[1][3] + vector.2 * matrix[2][3] + matrix[3][3];
 
-    if w != 0.0 {
-        (x / w, y / w, z / w)
-    } else {
-        (x, y, z)
-    }
+	if w == 0.0 {
+		w = 0.000001;
+	}
+	
+	(x / w, y / w, z / w)
 }
 
 type Vector = (f32, f32, f32);

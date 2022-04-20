@@ -34,10 +34,9 @@ impl Drawable for MeshActor {
             let normal = triangle.normal();
             if normal.dot(&(&plain - camera.position())) < 0.0 {
                 let brightness = (light.dot(&normal) * (u8::MAX as f32)) as u8;
-                let color = [255, 255, 255, brightness];
+                let color = [brightness, brightness, brightness, u8::MAX];
 
                 let projection = triangle.get_projection(camera.projection_matrix(), offset);
-
 				viewport.fill_triangle(
 				(projection.0.x, projection.0.y, projection.0.z),
 				(projection.1.x, projection.1.y, projection.1.z),
